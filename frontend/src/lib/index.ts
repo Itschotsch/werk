@@ -1,1 +1,3 @@
-// place files you want to import through the `$lib` alias in this folder.
+export { default as AppHeader } from './components/layout/AppHeader.svelte';
+export { default as AppFooter } from './components/layout/AppFooter.svelte';
+export type { NavItem, UserSummary } from './types/navigation';

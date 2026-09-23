@@ -2,8 +2,8 @@
 	let { data } = $props();
 </script>
 
-<main>
+<section>
 	<h1>Werk</h1>
 	<p>{data.message}</p>
 	<p>Database: {data.database}</p>
-</main>
+</section>
