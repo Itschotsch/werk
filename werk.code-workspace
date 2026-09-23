@@ -1,0 +1,48 @@
+{
+	"folders": [
+		{
+			"name": "Werk (Root)",
+			"path": "."
+		},
+		{
+			"name": "Frontend",
+			"path": "frontend"
+		},
+		{
+			"name": "Backend",
+			"path": "backend"
+		}
+	],
+	"settings": {
+		"editor.formatOnSave": true,
+		"editor.codeActionsOnSave": {
+			"source.fixAll.eslint": "explicit"
+		},
+		"eslint.validate": ["javascript", "typescript", "svelte"],
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"typescript.enablePromptUseWorkspaceTsdk": true,
+		"typescript.preferences.includePackageJsonAutoImports": "auto",
+		"svelte.enable-ts-plugin": true,
+		"files.exclude": {
+			"**/.git": false,
+			"**/.svelte-kit": true,
+			"**/dist": true
+		},
+		"search.exclude": {
+			"**/node_modules": true,
+			"**/.svelte-kit": true,
+			"**/dist": true,
+			"**/package-lock.json": true
+		}
+	},
+	"extensions": {
+		"recommendations": [
+			"svelte.svelte-vscode",
+			"dbaeumer.vscode-eslint",
+			"esbenp.prettier-vscode",
+			"ms-azuretools.vscode-docker",
+			"mongodb.mongodb-vscode",
+			"redhat.vscode-yaml"
+		]
+	}
+}

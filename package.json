@@ -1,0 +1,29 @@
+{
+	"name": "werk-monorepo",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"scripts": {
+		"typecheck": "npm run typecheck:backend && npm run typecheck:frontend",
+		"typecheck:backend": "npm --prefix backend run typecheck",
+		"typecheck:frontend": "npm --prefix frontend run check",
+		"lint": "eslint . --max-warnings=0",
+		"lint:fix": "eslint . --fix",
+		"format": "prettier --write .",
+		"format:check": "prettier --check .",
+		"precommit": "npm run format:check && npm run typecheck && npm run lint",
+		"prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
+	},
+	"devDependencies": {
+		"@eslint/js": "^9.20.0",
+		"eslint": "^9.20.0",
+		"eslint-config-prettier": "^10.0.1",
+		"eslint-plugin-svelte": "^2.46.1",
+		"globals": "^15.15.0",
+		"prettier": "^3.5.1",
+		"prettier-plugin-svelte": "^3.3.3",
+		"svelte": "^5.0.0",
+		"typescript": "^5.6.3",
+		"typescript-eslint": "^8.24.0"
+	}
+}
