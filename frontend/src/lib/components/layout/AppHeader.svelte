@@ -2,6 +2,7 @@
 	import type { Snippet } from 'svelte';
 	import { page } from '$app/state';
 	import type { NavItem, UserSummary } from '$lib/types/navigation';
+	import { useI18n } from '$lib/i18n';
 
 	interface Props {
 		title?: string;
@@ -14,16 +15,22 @@
 
 	let {
 		title = 'Werk',
-		navItems = [
-			{ label: 'Projekte', href: '/projects' },
-			{ label: 'Kreative', href: '/creatives' },
-			{ label: 'Entdecken', href: '/explore' }
-		],
+		navItems,
 		user = null,
 		searchSnippet,
 		actionsSnippet,
 		userSnippet
 	}: Props = $props();
+
+	const i18n = useI18n();
+
+	const resolvedNavItems = $derived(
+		navItems ?? [
+			{ label: i18n.t.header.nav.projects, href: '/projects' },
+			{ label: i18n.t.header.nav.creatives, href: '/creatives' },
+			{ label: i18n.t.header.nav.explore, href: '/explore' }
+		]
+	);
 
 	function isActive(item: NavItem, currentPath: string): boolean {
 		if (item.exact) {
@@ -35,13 +42,13 @@
 
 <header>
 	<div class="header-group">
-		<a href="/" aria-label="{title}-Startseite">
+		<a href="/" aria-label={i18n.t.header.homeAriaLabel(title)}>
 			<span>{title}</span>
 		</a>
 
-		<nav aria-label="Navigation">
+		<nav aria-label={i18n.t.header.navAriaLabel}>
 			<ul>
-				{#each navItems as item (item.href)}
+				{#each resolvedNavItems as item (item.href)}
 					{@const active = isActive(item, page.url.pathname)}
 					<li>
 						<a href={item.href} aria-current={active ? 'page' : undefined}>
@@ -62,11 +69,11 @@
 					id="global-search"
 					name="q"
 					type="search"
-					aria-label="Suche Projekte, Kreative, ..."
-					placeholder="Suche..."
+					aria-label={i18n.t.header.search.inputAriaLabel}
+					placeholder={i18n.t.header.search.placeholder}
 					autocomplete="off"
 				/>
-				<button type="submit">Suchen</button>
+				<button type="submit">{i18n.t.header.search.submit}</button>
 			</form>
 		{/if}
 
@@ -79,12 +86,12 @@
 				{#if userSnippet}
 					{@render userSnippet(user)}
 				{:else}
-					<a href="/profile" aria-label="User Profile">
+					<a href="/profile" aria-label={i18n.t.header.user.profileAriaLabel}>
 						<span>{user.displayName}</span>
 					</a>
 				{/if}
 			{:else}
-				<a href="/login">Anmelden</a>
+				<a href="/login">{i18n.t.header.user.signIn}</a>
 			{/if}
 		</div>
 	</div>

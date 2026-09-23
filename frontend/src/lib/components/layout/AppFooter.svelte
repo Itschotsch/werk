@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { Snippet } from 'svelte';
 	import type { NavItem } from '$lib/types/navigation';
+	import { useI18n } from '$lib/i18n';
 
 	interface Props {
 		tagline?: string;
@@ -8,16 +9,20 @@
 		extraSnippet?: Snippet;
 	}
 
-	let {
-		tagline = 'Plattform für Kreativschaffende',
-		navItems = [
-			{ label: 'Impressum', href: '/about' },
-			{ label: 'Richtlinien', href: '/guidelines' },
-			{ label: 'Entdecken', href: '/explore' },
-			{ label: 'Anmelden', href: '/login' }
-		],
-		extraSnippet
-	}: Props = $props();
+	let { tagline, navItems, extraSnippet }: Props = $props();
+
+	const i18n = useI18n();
+
+	const resolvedTagline = $derived(tagline ?? i18n.t.footer.tagline);
+
+	const resolvedNavItems = $derived(
+		navItems ?? [
+			{ label: i18n.t.footer.nav.about, href: '/about' },
+			{ label: i18n.t.footer.nav.guidelines, href: '/guidelines' },
+			{ label: i18n.t.footer.nav.explore, href: '/explore' },
+			{ label: i18n.t.footer.nav.imprint, href: '/imprint' }
+		]
+	);
 
 	const currentYear = new Date().getFullYear();
 </script>
@@ -27,13 +32,13 @@
 		<p>
 			<strong>Werk</strong>
 			<span>–</span>
-			<span>{tagline}</span>
+			<span>{resolvedTagline}</span>
 		</p>
 	</div>
 
-	<nav aria-label="Footer Navigation">
+	<nav aria-label={i18n.t.footer.navAriaLabel}>
 		<ul>
-			{#each navItems as item (item.href)}
+			{#each resolvedNavItems as item (item.href)}
 				<li>
 					<a href={item.href}>{item.label}</a>
 				</li>
@@ -45,7 +50,7 @@
 		{#if extraSnippet}
 			{@render extraSnippet()}
 		{:else}
-			<small>© {currentYear} Werk</small>
+			<small>{i18n.t.footer.copyright(currentYear)}</small>
 		{/if}
 	</div>
 </footer>
