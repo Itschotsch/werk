@@ -16,7 +16,7 @@
 </script>
 
 <div class="app-layout">
-	<AppHeader />
+	<AppHeader user={data.user} />
 	<main>
 		{@render children()}
 	</main>

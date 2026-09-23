@@ -24,6 +24,9 @@ export interface HeaderMessages {
 	user: {
 		profileAriaLabel: string;
 		signIn: string;
+		register: string;
+		signOut: string;
+		greeting: (name: string) => string;
 	};
 }
 
@@ -43,8 +46,43 @@ export interface HomeMessages {
 	databaseStatus: (status: string) => string;
 }
 
+export interface AuthMessages {
+	login: {
+		title: string;
+		identifierLabel: string;
+		identifierPlaceholder: string;
+		passwordLabel: string;
+		submitButton: string;
+		submittingButton: string;
+		noAccountPrompt: string;
+		registerLink: string;
+		invalidCredentials: string;
+	};
+	register: {
+		title: string;
+		emailLabel: string;
+		usernameLabel: string;
+		displayNameLabel: string;
+		passwordLabel: string;
+		passwordHint: string;
+		submitButton: string;
+		submittingButton: string;
+		hasAccountPrompt: string;
+		loginLink: string;
+		emailInUse: string;
+		usernameInUse: string;
+		invalidUsername: string;
+		invalidPassword: string;
+		welcomeMessage: (name: string) => string;
+	};
+	logout: {
+		button: string;
+	};
+}
+
 export interface Messages {
 	header: HeaderMessages;
 	footer: FooterMessages;
 	home: HomeMessages;
+	auth: AuthMessages;
 }

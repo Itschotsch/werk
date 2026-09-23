@@ -16,7 +16,10 @@ export const de: Messages = {
 		},
 		user: {
 			profileAriaLabel: 'Benutzerprofil',
-			signIn: 'Anmelden'
+			signIn: 'Anmelden',
+			register: 'Registrieren',
+			signOut: 'Abmelden',
+			greeting: (name: string) => `Hallo, ${name}`
 		}
 	},
 	footer: {
@@ -32,5 +35,39 @@ export const de: Messages = {
 	},
 	home: {
 		databaseStatus: (status: string) => `Datenbank: ${status}`
+	},
+	auth: {
+		login: {
+			title: 'Anmelden',
+			identifierLabel: 'E-Mail oder Benutzername',
+			identifierPlaceholder: 'name@beispiel.ch oder Benutzername',
+			passwordLabel: 'Passwort',
+			submitButton: 'Anmelden',
+			submittingButton: 'Wird angemeldet...',
+			noAccountPrompt: 'Noch kein Konto?',
+			registerLink: 'Jetzt registrieren',
+			invalidCredentials: 'Ungültige Anmeldedaten. Bitte überprüfen Sie Ihre Eingaben.'
+		},
+		register: {
+			title: 'Registrieren',
+			emailLabel: 'E-Mail-Adresse',
+			usernameLabel: 'Benutzername',
+			displayNameLabel: 'Anzeigename',
+			passwordLabel: 'Passwort',
+			passwordHint: 'Mindestens 8 Zeichen',
+			submitButton: 'Konto erstellen',
+			submittingButton: 'Wird erstellt...',
+			hasAccountPrompt: 'Bereits registriert?',
+			loginLink: 'Hier anmelden',
+			emailInUse: 'Diese E-Mail-Adresse wird bereits verwendet.',
+			usernameInUse: 'Dieser Benutzername ist bereits vergeben.',
+			invalidUsername:
+				'Der Benutzername muss zwischen 3 und 30 Zeichen lang sein (Buchstaben, Zahlen, Bindestrich, Unterstrich).',
+			invalidPassword: 'Das Passwort muss mindestens 8 Zeichen lang sein.',
+			welcomeMessage: (name: string) => `Willkommen bei Werk, ${name}!`
+		},
+		logout: {
+			button: 'Abmelden'
+		}
 	}
 };

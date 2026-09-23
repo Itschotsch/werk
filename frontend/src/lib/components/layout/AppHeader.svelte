@@ -89,9 +89,13 @@
 					<a href="/profile" aria-label={i18n.t.header.user.profileAriaLabel}>
 						<span>{user.displayName}</span>
 					</a>
+					<form action="/logout" method="post" class="logout-form">
+						<button type="submit">{i18n.t.header.user.signOut}</button>
+					</form>
 				{/if}
 			{:else}
 				<a href="/login">{i18n.t.header.user.signIn}</a>
+				<a href="/register">{i18n.t.header.user.register}</a>
 			{/if}
 		</div>
 	</div>
@@ -126,6 +130,11 @@
 
 	.actions-group {
 		display: flex;
+		align-items: center;
+	}
+
+	.logout-form {
+		display: inline-flex;
 		align-items: center;
 	}
 </style>
