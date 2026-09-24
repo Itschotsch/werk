@@ -48,7 +48,7 @@ Eine Person kann beispielsweise:
 
 * Arbeiten auf Instagram zeigen,
 * Videos auf Vimeo oder YouTube veröffentlichen,
-* ein Portfolio auf einer eigenen Website führen,
+* ein Portfolio auf einer eigenen Webseite führen,
 * Projekte auf Behance oder ArtStation dokumentieren,
 * Personen über soziale Netzwerke suchen,
 * Kommunikation über Messenger führen,
@@ -388,7 +388,7 @@ Beispiel:
 **Rolle:** Fotografie
 **Beteiligte:** mehrere Personen
 **Beschreibung:** …
-**Externe Präsentation:** Website / Behance / Vimeo / Instagram
+**Externe Präsentation:** Webseite / Behance / Vimeo / Instagram
 
 Damit entsteht ein strukturiertes Portfolio, ohne dass sämtliche alten Arbeiten neu produziert oder hochgeladen werden müssen.
 
@@ -414,7 +414,7 @@ Die Inhalte liegen auf Fundus:
 
 Das Projekt wird auf Fundus strukturiert beschrieben, die eigentliche Präsentation befindet sich aber beispielsweise auf:
 
-* eigener Website
+* eigener Webseite
 * Instagram
 * Vimeo
 * YouTube
@@ -916,7 +916,7 @@ Beispiele:
 * TikTok
 * Behance
 * ArtStation
-* persönliche Website
+* persönliche Webseite
 
 Damit muss Fundus nicht sämtliche vorhandenen Inhalte ersetzen.
 

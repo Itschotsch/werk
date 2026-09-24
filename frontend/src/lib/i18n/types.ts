@@ -112,10 +112,61 @@ export interface ProfileMessages {
 	websitePlaceholder: string;
 }
 
+export interface PagesMessages {
+	about: {
+		title: string;
+		subtitle: string;
+		missionTitle: string;
+		missionText: string;
+		creativesTitle: string;
+		creativesText: string;
+		openTitle: string;
+		openText: string;
+	};
+	guidelines: {
+		title: string;
+		subtitle: string;
+		respectTitle: string;
+		respectText: string;
+		copyrightTitle: string;
+		copyrightText: string;
+		authenticityTitle: string;
+		authenticityText: string;
+		standardsTitle: string;
+		standardsText: string;
+		enforcementTitle: string;
+		enforcementText: string;
+	};
+	imprint: {
+		title: string;
+		contactTitle: string;
+		emailLabel: string;
+		websiteLabel: string;
+	};
+	projects: {
+		title: string;
+		placeholderText: string;
+	};
+	creatives: {
+		title: string;
+		placeholderText: string;
+	};
+	explore: {
+		title: string;
+		placeholderText: string;
+	};
+	search: {
+		title: string;
+		resultsFor: (query: string) => string;
+		placeholderText: string;
+	};
+}
+
 export interface Messages {
 	header: HeaderMessages;
 	footer: FooterMessages;
 	home: HomeMessages;
 	auth: AuthMessages;
 	profile: ProfileMessages;
+	pages: PagesMessages;
 }

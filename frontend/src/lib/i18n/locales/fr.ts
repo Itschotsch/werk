@@ -100,5 +100,64 @@ export const fr: Messages = {
 		rolesPlaceholder: 'Photographe, Réalisateur, Modèle',
 		websiteLabel: 'Site web / Portfolio',
 		websitePlaceholder: 'https://mon-site-web.com'
+	},
+	pages: {
+		about: {
+			title: 'À propos de nous',
+			subtitle:
+				'Werk est une plateforme permettant aux créatifs de se trouver, de présenter leurs portfolios et d’organiser une collaboration interdisciplinaire.',
+			missionTitle: 'Notre mission',
+			missionText:
+				'Werk connecte les modèles avec les photographes, les comédiens avec les réalisateurs, les designers avec les producteurs, le tout en un seul endroit. Werk a pour vocation d’être une scène pour les projets artistiques, les réseaux et la création collaborative.',
+			creativesTitle: 'Pour les créatifs & collectifs',
+			creativesText:
+				'Qu’il s’agisse de photographie, de cinéma, de graphisme, de musique ou d’autre chose ; sur Werk, les créatifs présentent leur portfolio, se mettent en réseau avec des personnes partageant les mêmes idées sur leurs lieux d’activité et trouvent des partenaires pour leur prochain projet. Présentez vos travaux, rôles et projets, trouvez des collaborateurs pour des tournages, photos, expositions, pièces de théâtre et bien plus encore, et échangez directement sans agence ni algorithme.',
+			openTitle: 'Indépendant & ouvert',
+			openText:
+				'Werk accorde une grande importance au droit d’auteur, à la protection des données, à des conditions d’utilisation équitables et à l’accessibilité. La plateforme est constamment développée afin de fournir un outil optimal à la communauté créative.'
+		},
+		guidelines: {
+			title: 'Règles de la communauté',
+			subtitle:
+				'Règles de la communauté pour une collaboration respectueuse, inspirante et professionnelle sur Werk.',
+			respectTitle: '1. Respect & conduite professionnelle',
+			respectText:
+				'Werk est un réseau pour les créatifs de tous horizons, qu’ils soient professionnels ou amateurs. Nous attendons des interactions courtoises, respectueuses et non discriminatoires entre tous les membres, indépendamment de leur origine, genre, identité, âge ou orientation politique et artistique.',
+			copyrightTitle: '2. Droit d’auteur & consentement',
+			copyrightText:
+				'Ne publiez que des œuvres, textes et images dont vous détentez les droits d’auteur ou pour lesquels vous disposez d’une autorisation expresse du ayant droit. Lors de la présentation de photos de personnes, veillez toujours à disposer des autorisations à l’image (model release) et droits de publication nécessaires.',
+			authenticityTitle: '3. Authenticité & transparence',
+			authenticityText:
+				'Présentez vos rôles, qualifications et contributions aux projets de manière honnête et transparente. Accordez toujours aux collaborateurs (photographes, stylistes, assistants, réalisateurs, etc.) le crédit qu’ils méritent.',
+			standardsTitle: '4. Normes de contenu & sécurité',
+			standardsText:
+				'Le spam, la publicité mensongère, le harcèlement, la traque ainsi que les contenus illégaux ou violents sont strictement interdits sur Werk. La publication de coordonnées confidentielles de tiers sans leur consentement entraînera la suspension immédiate du compte.',
+			enforcementTitle: '5. Application & signalements',
+			enforcementText:
+				'Les violations de ces règles peuvent être signalées. Nous nous réservons le droit de supprimer du contenu sans préavis ni communication, ou de désactiver des comptes si nécessaire.'
+		},
+		imprint: {
+			title: 'Mentions légales',
+			contactTitle: 'Contact',
+			emailLabel: 'E-mail',
+			websiteLabel: 'Site web'
+		},
+		projects: {
+			title: 'Projets',
+			placeholderText: 'Les projets seront affichés ici.'
+		},
+		creatives: {
+			title: 'Créatifs',
+			placeholderText: 'Les profils et portfolios des créatifs seront affichés ici.'
+		},
+		explore: {
+			title: 'Explorer',
+			placeholderText: 'Explorer le contenu et les projets.'
+		},
+		search: {
+			title: 'Recherche',
+			resultsFor: (query: string) => `Résultats de recherche pour : ${query}`,
+			placeholderText: 'Les résultats de recherche seront affichés ici.'
+		}
 	}
 };

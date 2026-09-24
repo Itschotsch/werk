@@ -99,5 +99,64 @@ export const en: Messages = {
 		rolesPlaceholder: 'Photographer, Director, Model',
 		websiteLabel: 'Website / Portfolio',
 		websitePlaceholder: 'https://my-website.com'
+	},
+	pages: {
+		about: {
+			title: 'About Us',
+			subtitle:
+				'Werk is a platform for creatives to find one another, showcase portfolios, and organise interdisciplinary collaboration.',
+			missionTitle: 'Our Mission',
+			missionText:
+				'Werk connects models with photographers, actors with directors, designers with producers, all in one place. Werk aims to be a stage for artistic projects, networks, and collaborative creation.',
+			creativesTitle: 'For Creatives & Collectives',
+			creativesText:
+				'Whether photography, film, graphic design, music, or something else; on Werk, creatives showcase their portfolio, connect with like-minded people at their locations, and find partners for their next project. Showcase your work, roles, and projects, find collaborators for film shoots, photography, exhibitions, theatre, and much more, and exchange directly without an agency or algorithm.',
+			openTitle: 'Independent & Open',
+			openText:
+				'Werk places a high value on copyright and data protection, fair terms of use, and accessibility. The platform is continuously developed to provide the creative community with an optimal tool.'
+		},
+		guidelines: {
+			title: 'Guidelines',
+			subtitle:
+				'Community guidelines for respectful, inspiring, and professional collaboration on Werk.',
+			respectTitle: '1. Respect & Professional Conduct',
+			respectText:
+				'Werk is a network for creatives of all kinds, whether professional or leisure-based. We expect polite, appreciative, and non-discriminatory interactions between all members, regardless of background, gender, identity, age, or political and artistic orientation.',
+			copyrightTitle: '2. Copyright & Consent',
+			copyrightText:
+				'Only publish works, texts, and images for which you hold the copyright or have express permission from the rights holder. When presenting photos of individuals, always ensure that necessary model releases and publishing rights are in place.',
+			authenticityTitle: '3. Authenticity & Transparency',
+			authenticityText:
+				'Present your roles, qualifications, and contributions to projects honestly and transparently. Always give collaborators (photographers, stylists, assistants, directors, etc.) the credit they deserve.',
+			standardsTitle: '4. Content Standards & Safety',
+			standardsText:
+				'Spam, misleading advertising, stalking, harassment, as well as unlawful or violent content are strictly prohibited on Werk. Publishing confidential contact details of third parties without consent will result in immediate account suspension.',
+			enforcementTitle: '5. Enforcement & Reporting',
+			enforcementText:
+				'Violations of these guidelines can be reported. We reserve the right to remove content without prior notice or communication, or to deactivate accounts if necessary.'
+		},
+		imprint: {
+			title: 'Imprint',
+			contactTitle: 'Contact',
+			emailLabel: 'Email',
+			websiteLabel: 'Website'
+		},
+		projects: {
+			title: 'Projects',
+			placeholderText: 'Projects will be displayed here.'
+		},
+		creatives: {
+			title: 'Creatives',
+			placeholderText: 'Creative profiles and portfolios will be displayed here.'
+		},
+		explore: {
+			title: 'Explore',
+			placeholderText: 'Explore content and projects.'
+		},
+		search: {
+			title: 'Search',
+			resultsFor: (query: string) => `Search results for: ${query}`,
+			placeholderText: 'Search results will be displayed here.'
+		}
 	}
 };

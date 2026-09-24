@@ -81,7 +81,7 @@ export const de: Messages = {
 		noLocations: 'Keine Orte angegeben.',
 		rolesTitle: 'Kreative Rollen',
 		noRoles: 'Keine Rollen angegeben.',
-		websiteTitle: 'Website',
+		websiteTitle: 'Webseite',
 		editProfile: 'Profil bearbeiten',
 		closeEdit: 'Bearbeiten abbrechen',
 		editModalTitle: 'Profil bearbeiten',
@@ -98,7 +98,66 @@ export const de: Messages = {
 		rolesLabel: 'Kreative Rollen',
 		rolesHint: 'Kommagetrennte Liste (z.B. Fotograf, Regie, Model)',
 		rolesPlaceholder: 'Fotograf, Regie, Model',
-		websiteLabel: 'Website / Portfolio',
+		websiteLabel: 'Webseite / Portfolio',
 		websitePlaceholder: 'https://meine-website.ch'
+	},
+	pages: {
+		about: {
+			title: 'Über uns',
+			subtitle:
+				'Werk ist eine Plattform für Kreative, um einander zu finden, Portfolios zu präsentieren und interdisziplinäre Zusammenarbeit zu organisieren.',
+			missionTitle: 'Unsere Mission',
+			missionText:
+				'Werk verbindet Models mit Fotografen, Schauspieler mit Regisseuren, Designer mit Produzenten, alles an einem gemeinsamen Ort. Werk soll eine Bühne für künstlerische Projekte, Netzwerke und kollaboratives Schaffen sein.',
+			creativesTitle: 'Für Kreative & Kollektive',
+			creativesText:
+				'Egal ob Fotografie, Film, Grafik, Musik oder etwas anderes; auf Werk präsentieren Kreative ihr Portfolio, vernetzen sich mit Gleichgesinnten an ihren Standorten und finden Partner für ihr nächstes Projekt. Präsentieren Sie Ihre Arbeiten, Rollen und Projekte, finden Sie Mitwirkende für Filmdrehs, Fotografien, Ausstellungen, Theater und viel mehr, und tauschen Sie sich direkt aus, ohne Agentur oder Algorithmus.',
+			openTitle: 'Unabhängig & Offen',
+			openText:
+				'Werk legt einen hohen Wert auf Urheberrecht und Datenschutz, faire Nutzungsbedingungen und Barrierefreiheit. Die Plattform wird stetig weiterentwickelt, um der kreativen Gemeinschaft ein optimales Werkzeug bereitzustellen.'
+		},
+		guidelines: {
+			title: 'Richtlinien',
+			subtitle:
+				'Gemeinschaftsrichtlinien für eine respektvolle, inspirierende und professionelle Zusammenarbeit auf Werk.',
+			respectTitle: '1. Respekt & Professioneller Umgang',
+			respectText:
+				'Werk ist ein Netzwerk für Kreative aller Art, ob beruflich oder in der Freizeit. Wir erwarten einen höflichen, wertschätzenden und diskriminierungsfreien Umgang zwischen allen Mitgliedern, unabhängig von Herkunft, Geschlecht, Identität, Alter oder politischer und künstlerischer Ausrichtung.',
+			copyrightTitle: '2. Urheberrecht & Einverständnis',
+			copyrightText:
+				'Veröffentlichen Sie nur Werke, Texte und Bildmaterialien, an denen Sie die Urheberrechte besitzen oder für die eine ausdrückliche Genehmigung der Rechteinhaber vorliegt. Achten Sie bei der Präsentation von Personenfotos stets auf das Vorliegen der notwendigen Model-Releases und Veröffentlichungsrechte.',
+			authenticityTitle: '3. Authentizität & Transparenz',
+			authenticityText:
+				'Präsentieren Sie Ihre Rollen, Qualifikationen und Mitwirkungen an Projekten ehrlich und transparent. Geben Sie Mitwirkenden (Fotografen, Stylisten, Assistenten, Regie etc.) stets die verdiente Namensnennung (Credits).',
+			standardsTitle: '4. Inhaltsstandards & Sicherheit',
+			standardsText:
+				'Spam, irreführende Werbung, Nachstellung, Belästigung sowie rechtswidrige oder gewaltverherrlichende Inhalte sind auf Werk strengstens untersagt. Das Veröffentlichen von vertraulichen Kontaktdaten Dritter ohne deren Einwilligung führt zur sofortigen Kontosperrung.',
+			enforcementTitle: '5. Durchsetzung & Meldungen',
+			enforcementText:
+				'Verstöße gegen diese Richtlinien können gemeldet werden. Wir behalten uns vor, Inhalte notfalls ohne Ankündigung und Kommunikation zu entfernen oder Konten zu deaktivieren.'
+		},
+		imprint: {
+			title: 'Impressum',
+			contactTitle: 'Kontakt',
+			emailLabel: 'E-Mail',
+			websiteLabel: 'Webseite'
+		},
+		projects: {
+			title: 'Projekte',
+			placeholderText: 'Projekte werden hier angezeigt.'
+		},
+		creatives: {
+			title: 'Kreative',
+			placeholderText: 'Kreative Profile und Portfolios werden hier angezeigt.'
+		},
+		explore: {
+			title: 'Entdecken',
+			placeholderText: 'Inhalte und Projekte entdecken.'
+		},
+		search: {
+			title: 'Suchen',
+			resultsFor: (query: string) => `Suchergebnisse für: ${query}`,
+			placeholderText: 'Suchergebnisse werden hier angezeigt.'
+		}
 	}
 };
