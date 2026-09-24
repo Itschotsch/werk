@@ -7,11 +7,23 @@ export interface IUserIdentity {
 	createdAt: Date;
 }
 
+export interface IUserLocation {
+	name: string;
+	lat?: number | undefined;
+	lon?: number | undefined;
+	placeId?: string | undefined;
+}
+
 export interface IUser extends Document {
 	_id: Types.ObjectId;
 	email: string;
 	username: string;
 	displayName: string;
+	biography?: string | undefined;
+	locations?: IUserLocation[] | undefined;
+	roles?: string[] | undefined;
+	website?: string | undefined;
+	avatarUrl?: string | undefined;
 	passwordHash?: string | undefined;
 	authProviders: string[];
 	identities: IUserIdentity[];
@@ -25,6 +37,16 @@ const userIdentitySchema = new Schema<IUserIdentity>(
 		providerId: { type: String, required: true },
 		credentialData: { type: Schema.Types.Mixed },
 		createdAt: { type: Date, default: () => new Date() }
+	},
+	{ _id: false }
+);
+
+const userLocationSchema = new Schema<IUserLocation>(
+	{
+		name: { type: String, required: true, trim: true, maxlength: 200 },
+		lat: { type: Number, required: false },
+		lon: { type: Number, required: false },
+		placeId: { type: String, required: false, trim: true }
 	},
 	{ _id: false }
 );
@@ -51,6 +73,32 @@ const userSchema = new Schema<IUser>(
 			type: String,
 			required: true,
 			trim: true
+		},
+		biography: {
+			type: String,
+			default: '',
+			trim: true,
+			maxlength: 5000
+		},
+		locations: {
+			type: [userLocationSchema],
+			default: []
+		},
+		roles: {
+			type: [String],
+			default: []
+		},
+		website: {
+			type: String,
+			default: '',
+			trim: true,
+			maxlength: 200
+		},
+		avatarUrl: {
+			type: String,
+			default: '',
+			trim: true,
+			maxlength: 500
 		},
 		passwordHash: {
 			type: String,

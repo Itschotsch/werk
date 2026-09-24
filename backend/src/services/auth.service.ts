@@ -97,6 +97,27 @@ export async function validateSession(
 		return null;
 	}
 
+	let needsSave = false;
+	if (!user.email || user.email.trim() === '') {
+		user.email = `user_${user._id.toString()}@werk.local`;
+		needsSave = true;
+	}
+	if (!user.username || user.username.trim() === '') {
+		const emailPrefix = user.email ? user.email.split('@')[0] : undefined;
+		const candidate = (emailPrefix || `user_${user._id.toString().slice(-6)}`)
+			.toLowerCase()
+			.replace(/[^a-z0-9_-]/g, '_');
+		user.username = candidate || `user_${user._id.toString().slice(-6)}`;
+		needsSave = true;
+	}
+	if (!user.displayName || user.displayName.trim() === '') {
+		user.displayName = user.username;
+		needsSave = true;
+	}
+	if (needsSave) {
+		await user.save();
+	}
+
 	return { user, session };
 }
 

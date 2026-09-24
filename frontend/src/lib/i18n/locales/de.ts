@@ -69,5 +69,36 @@ export const de: Messages = {
 		logout: {
 			button: 'Abmelden'
 		}
+	},
+	profile: {
+		title: (name: string) => `Profil von ${name}`,
+		notFound: 'Benutzer nicht gefunden',
+		notFoundDescription: 'Der angeforderte Benutzer existiert nicht oder wurde entfernt.',
+		memberSince: (date: string) => `Mitglied seit ${date}`,
+		biographyTitle: 'Biographie',
+		noBiography: 'Noch keine Biographie vorhanden.',
+		locationsTitle: 'Oft besuchte Orte',
+		noLocations: 'Keine Orte angegeben.',
+		rolesTitle: 'Kreative Rollen',
+		noRoles: 'Keine Rollen angegeben.',
+		websiteTitle: 'Website',
+		editProfile: 'Profil bearbeiten',
+		closeEdit: 'Bearbeiten abbrechen',
+		editModalTitle: 'Profil bearbeiten',
+		saveChanges: 'Änderungen speichern',
+		saving: 'Wird gespeichert...',
+		successMessage: 'Profil erfolgreich aktualisiert!',
+		errorMessage: 'Fehler beim Aktualisieren des Profils. Bitte versuchen Sie es erneut.',
+		displayNameLabel: 'Anzeigename',
+		biographyLabel: 'Biographie',
+		biographyPlaceholder: 'Erzählen Sie etwas über sich und Ihre kreative Arbeit...',
+		locationsLabel: 'Oft besuchte Orte',
+		locationsHint: 'Orte zeilenweise oder kommagetrennt eingeben (z.B. Zürich, Schweiz)',
+		locationsPlaceholder: 'Zürich, Schweiz\nBern, Schweiz',
+		rolesLabel: 'Kreative Rollen',
+		rolesHint: 'Kommagetrennte Liste (z.B. Fotograf, Regie, Model)',
+		rolesPlaceholder: 'Fotograf, Regie, Model',
+		websiteLabel: 'Website / Portfolio',
+		websitePlaceholder: 'https://meine-website.ch'
 	}
 };

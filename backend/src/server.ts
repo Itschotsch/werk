@@ -3,6 +3,7 @@ import cors from '@fastify/cors';
 import mongoose from 'mongoose';
 import { initDatabase } from './db/init.js';
 import { authRoutes } from './routes/auth.routes.js';
+import { userRoutes } from './routes/user.routes.js';
 
 const PORT = parseInt(process.env.PORT || '3001', 10);
 const HOST = process.env.HOST || '0.0.0.0';
@@ -12,8 +13,9 @@ const app = fastify({ logger: true });
 
 await app.register(cors, { origin: true });
 
-// Register authentication routes
+// Register authentication & user routes
 await app.register(authRoutes, { prefix: '/api/auth' });
+await app.register(userRoutes, { prefix: '/api/users' });
 
 // Health check endpoint (for Docker healthcheck)
 app.get('/api/health', async () => {

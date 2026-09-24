@@ -86,7 +86,10 @@
 				{#if userSnippet}
 					{@render userSnippet(user)}
 				{:else}
-					<a href="/profile" aria-label={i18n.t.header.user.profileAriaLabel}>
+					<a
+						href={`/user/${user.username || user.handle || user.displayName}`}
+						aria-label={i18n.t.header.user.profileAriaLabel}
+					>
 						<span>{user.displayName}</span>
 					</a>
 					<form action="/logout" method="post" class="logout-form">

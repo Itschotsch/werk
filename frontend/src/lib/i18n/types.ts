@@ -80,9 +80,42 @@ export interface AuthMessages {
 	};
 }
 
+export interface ProfileMessages {
+	title: (name: string) => string;
+	notFound: string;
+	notFoundDescription: string;
+	memberSince: (date: string) => string;
+	biographyTitle: string;
+	noBiography: string;
+	locationsTitle: string;
+	noLocations: string;
+	rolesTitle: string;
+	noRoles: string;
+	websiteTitle: string;
+	editProfile: string;
+	closeEdit: string;
+	editModalTitle: string;
+	saveChanges: string;
+	saving: string;
+	successMessage: string;
+	errorMessage: string;
+	displayNameLabel: string;
+	biographyLabel: string;
+	biographyPlaceholder: string;
+	locationsLabel: string;
+	locationsHint: string;
+	locationsPlaceholder: string;
+	rolesLabel: string;
+	rolesHint: string;
+	rolesPlaceholder: string;
+	websiteLabel: string;
+	websitePlaceholder: string;
+}
+
 export interface Messages {
 	header: HeaderMessages;
 	footer: FooterMessages;
 	home: HomeMessages;
 	auth: AuthMessages;
+	profile: ProfileMessages;
 }

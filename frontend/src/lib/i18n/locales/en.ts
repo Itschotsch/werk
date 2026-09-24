@@ -68,5 +68,36 @@ export const en: Messages = {
 		logout: {
 			button: 'Sign Out'
 		}
+	},
+	profile: {
+		title: (name: string) => `${name}'s Profile`,
+		notFound: 'User not found',
+		notFoundDescription: 'The requested user does not exist or has been removed.',
+		memberSince: (date: string) => `Member since ${date}`,
+		biographyTitle: 'Biography',
+		noBiography: 'No biography provided yet.',
+		locationsTitle: 'Frequently Visited Locations',
+		noLocations: 'No locations specified.',
+		rolesTitle: 'Creative Roles',
+		noRoles: 'No roles specified.',
+		websiteTitle: 'Website',
+		editProfile: 'Edit Profile',
+		closeEdit: 'Cancel Editing',
+		editModalTitle: 'Edit Profile',
+		saveChanges: 'Save Changes',
+		saving: 'Saving...',
+		successMessage: 'Profile updated successfully!',
+		errorMessage: 'Failed to update profile. Please try again.',
+		displayNameLabel: 'Display Name',
+		biographyLabel: 'Biography',
+		biographyPlaceholder: 'Tell us about yourself and your creative work...',
+		locationsLabel: 'Frequently Visited Locations',
+		locationsHint: 'Enter locations per line or comma-separated (e.g. Zurich, Switzerland)',
+		locationsPlaceholder: 'Zurich, Switzerland\nBern, Switzerland',
+		rolesLabel: 'Creative Roles',
+		rolesHint: 'Comma-separated list (e.g. Photographer, Director, Model)',
+		rolesPlaceholder: 'Photographer, Director, Model',
+		websiteLabel: 'Website / Portfolio',
+		websitePlaceholder: 'https://my-website.com'
 	}
 };

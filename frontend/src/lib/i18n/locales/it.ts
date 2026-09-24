@@ -69,5 +69,36 @@ export const it: Messages = {
 		logout: {
 			button: 'Disconnetti'
 		}
+	},
+	profile: {
+		title: (name: string) => `Profilo di ${name}`,
+		notFound: 'Utente non trovato',
+		notFoundDescription: "L'utente richiesto non esiste o è stato rimosso.",
+		memberSince: (date: string) => `Membro dal ${date}`,
+		biographyTitle: 'Biografia',
+		noBiography: 'Nessuna biografia inserita.',
+		locationsTitle: 'Luoghi frequenti',
+		noLocations: 'Nessun luogo specificato.',
+		rolesTitle: 'Ruoli creativi',
+		noRoles: 'Nessun ruolo specificato.',
+		websiteTitle: 'Sito web',
+		editProfile: 'Modifica profilo',
+		closeEdit: 'Annulla modifica',
+		editModalTitle: 'Modifica profilo',
+		saveChanges: 'Salva modifiche',
+		saving: 'Salvataggio...',
+		successMessage: 'Profilo aggiornato con successo!',
+		errorMessage: 'Aggiornamento del profilo fallito. Riprova.',
+		displayNameLabel: 'Nome visualizzato',
+		biographyLabel: 'Biografia',
+		biographyPlaceholder: 'Raccontaci qualcosa su di te e sul tuo lavoro creativo...',
+		locationsLabel: 'Luoghi frequenti',
+		locationsHint: 'Inserisci i luoghi per riga o separati da virgole (es. Zurigo, Svizzera)',
+		locationsPlaceholder: 'Zurigo, Svizzera\nBerna, Svizzera',
+		rolesLabel: 'Ruoli creativi',
+		rolesHint: 'Elenco separato da virgole (es. Fotografo, Regista, Modello)',
+		rolesPlaceholder: 'Fotografo, Regista, Modello',
+		websiteLabel: 'Sito web / Portfolio',
+		websitePlaceholder: 'https://il-mio-sito.com'
 	}
 };

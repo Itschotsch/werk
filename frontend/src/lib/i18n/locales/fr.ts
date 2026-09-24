@@ -69,5 +69,36 @@ export const fr: Messages = {
 		logout: {
 			button: 'Se déconnecter'
 		}
+	},
+	profile: {
+		title: (name: string) => `Profil de ${name}`,
+		notFound: 'Utilisateur non trouvé',
+		notFoundDescription: "L'utilisateur demandé n'existe pas ou a été supprimé.",
+		memberSince: (date: string) => `Membre depuis le ${date}`,
+		biographyTitle: 'Biographie',
+		noBiography: 'Aucune biographie fournie pour le moment.',
+		locationsTitle: 'Lieux fréquents',
+		noLocations: 'Aucun lieu spécifié.',
+		rolesTitle: 'Rôles créatifs',
+		noRoles: 'Aucun rôle spécifié.',
+		websiteTitle: 'Site web',
+		editProfile: 'Modifier le profil',
+		closeEdit: 'Annuler la modification',
+		editModalTitle: 'Modifier le profil',
+		saveChanges: 'Enregistrer les modifications',
+		saving: 'Enregistrement...',
+		successMessage: 'Profil mis à jour avec succès !',
+		errorMessage: 'Échec de la mise à jour du profil. Veuillez réessayer.',
+		displayNameLabel: 'Nom affiché',
+		biographyLabel: 'Biographie',
+		biographyPlaceholder: 'Racontez-nous quelque chose sur vous et votre travail créatif...',
+		locationsLabel: 'Lieux fréquents',
+		locationsHint: 'Entrez les lieux par ligne ou séparés par des virgules (ex. Zurich, Suisse)',
+		locationsPlaceholder: 'Zurich, Suisse\nBerne, Suisse',
+		rolesLabel: 'Rôles créatifs',
+		rolesHint: 'Liste séparée par des virgules (ex. Photographe, Réalisateur, Modèle)',
+		rolesPlaceholder: 'Photographe, Réalisateur, Modèle',
+		websiteLabel: 'Site web / Portfolio',
+		websitePlaceholder: 'https://mon-site-web.com'
 	}
 };

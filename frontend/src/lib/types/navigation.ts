@@ -6,6 +6,7 @@ export interface NavItem {
 
 export interface UserSummary {
 	displayName: string;
+	username?: string;
 	handle?: string;
 	avatarUrl?: string;
 }
