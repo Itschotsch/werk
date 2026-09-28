@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { highlight } from "@highlighters/svelte";
 	import { useI18n } from "$lib/i18n";
 
 	let { data } = $props();
@@ -7,7 +8,7 @@
 </script>
 
 <section>
-	<h1>Werk</h1>
+	<h1 use:highlight={{ color: "var(--primary-color)" }}>Werk</h1>
 	{#if data.user}
 		<p>{i18n.t.auth.register.welcomeMessage(data.user.displayName)}</p>
 	{/if}

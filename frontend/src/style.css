@@ -1,0 +1,9 @@
+@layer default {
+	:root {
+		--primary-color: #0066cc;
+	}
+
+	::selection {
+		background: transparent;
+	}
+}
