@@ -14,7 +14,7 @@
 	}
 
 	let {
-		title = "Werk",
+		title,
 		navItems,
 		user = null,
 		searchSnippet,
@@ -23,6 +23,8 @@
 	}: Props = $props();
 
 	const i18n = useI18n();
+
+	const resolvedTitle = $derived(title ?? i18n.t.appName);
 
 	const resolvedNavItems = $derived(
 		navItems ?? [
@@ -42,8 +44,8 @@
 
 <header>
 	<div class="header-group">
-		<a href="/" aria-label={i18n.t.header.homeAriaLabel(title)}>
-			<span>{title}</span>
+		<a href="/" aria-label={i18n.t.header.homeAriaLabel(resolvedTitle)}>
+			<span>{resolvedTitle}</span>
 		</a>
 
 		<nav aria-label={i18n.t.header.navAriaLabel}>

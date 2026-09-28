@@ -11,6 +11,10 @@
 	const i18n = useI18n();
 </script>
 
+<svelte:head>
+	<title>{i18n.t.pageTitle(i18n.t.auth.login.title)}</title>
+</svelte:head>
+
 <section class="auth-container">
 	<h1>{i18n.t.auth.login.title}</h1>
 

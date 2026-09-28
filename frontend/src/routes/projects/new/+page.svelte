@@ -21,7 +21,9 @@
 </script>
 
 <svelte:head>
-	<title>{i18n.t.projects.createTitle} | {i18n.t.pages.projects.title}</title>
+	<title>
+		{i18n.t.pageTitle(`${i18n.t.projects.createTitle} | ${i18n.t.pages.projects.title}`)}
+	</title>
 </svelte:head>
 
 <div>

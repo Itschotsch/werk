@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>{i18n.t.pages.imprint.title} | Werk</title>
+	<title>{i18n.t.pageTitle(i18n.t.pages.imprint.title)}</title>
 </svelte:head>
 
 <div>

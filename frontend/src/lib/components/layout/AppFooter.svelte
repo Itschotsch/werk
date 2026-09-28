@@ -30,7 +30,7 @@
 <footer>
 	<div class="footer-section">
 		<p>
-			<strong>Werk</strong>
+			<strong>{i18n.t.appName}</strong>
 			<span>–</span>
 			<span>{resolvedTagline}</span>
 		</p>

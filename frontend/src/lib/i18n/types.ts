@@ -226,6 +226,8 @@ export interface ProjectsMessages {
 }
 
 export interface Messages {
+	appName: string;
+	pageTitle: (title?: string) => string;
 	header: HeaderMessages;
 	footer: FooterMessages;
 	home: HomeMessages;

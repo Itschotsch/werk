@@ -27,6 +27,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{i18n.t.pageTitle(i18n.t.auth.register.title)}</title>
+</svelte:head>
+
 <section class="auth-container">
 	<h1>{i18n.t.auth.register.title}</h1>
 
@@ -57,7 +61,7 @@
 				name="username"
 				required
 				autocomplete="username"
-				pattern="[a-zA-Z0-9_-]{'{3,30}'}"
+				pattern={"[a-zA-Z0-9_-]{3,30}"}
 				value={form?.username ?? ""}
 			/>
 		</div>

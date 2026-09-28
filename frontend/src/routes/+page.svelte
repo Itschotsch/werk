@@ -7,8 +7,12 @@
 	const i18n = useI18n();
 </script>
 
+<svelte:head>
+	<title>{i18n.t.pageTitle()}</title>
+</svelte:head>
+
 <section>
-	<h1 use:highlight={{ color: "var(--primary-color)" }}>Werk</h1>
+	<h1 use:highlight={{ color: "var(--primary-color)" }}>{i18n.t.appName}</h1>
 	{#if data.user}
 		<p>{i18n.t.auth.register.welcomeMessage(data.user.displayName)}</p>
 	{/if}

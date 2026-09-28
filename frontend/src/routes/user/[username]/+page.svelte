@@ -53,7 +53,7 @@
 </script>
 
 <svelte:head>
-	<title>{i18n.t.profile.title(profile.displayName)} | Werk</title>
+	<title>{i18n.t.pageTitle(i18n.t.profile.title(profile.displayName))}</title>
 </svelte:head>
 
 <div>

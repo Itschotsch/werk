@@ -1,6 +1,8 @@
 import type { Messages } from "../types";
 
 export const it: Messages = {
+	appName: "Werk",
+	pageTitle: (title?: string) => (title ? `${title} | Werk` : "Werk"),
 	header: {
 		homeAriaLabel: (title: string) => `Home page di ${title}`,
 		navAriaLabel: "Navigazione principale",

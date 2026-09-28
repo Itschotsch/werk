@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>{i18n.t.pages.search.title} | Werk</title>
+	<title>{i18n.t.pageTitle(i18n.t.pages.search.title)}</title>
 </svelte:head>
 
 <div>
