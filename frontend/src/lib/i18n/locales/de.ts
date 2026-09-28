@@ -221,6 +221,26 @@ export const de: Messages = {
 		logDatetimeLabel: "Datum & Uhrzeit (optional, Standard: jetzt)",
 		logTextLabel: "Inhalt *",
 		logTextPlaceholder: "Details zum Fortgang des Projekts...",
-		publishLogEntry: "Eintrag veröffentlichen"
+		publishLogEntry: "Eintrag veröffentlichen",
+		blueprint: {
+			figureHeader: "FIG. 01 // PROJEKTSPEZIFIKATION",
+			specificationLabel: "PROJEKT / SPEZIFIKATION",
+			drawingIdLabel: "ZEICHNUNGS-ID",
+			scaleLabel: "MASSSTAB",
+			headerLabel: "ABB. 0.1 · SPEZIFIKATION",
+			headerDimension: "KOPF · 100%",
+			alertLabel: "ALARM · FEHLER",
+			sectionDescriptionDimension: "ABS · BESCHREIBUNG",
+			sectionTagsDimension: "ABS · SCHLAGWORTE",
+			sectionLeadershipDimension: "ABS · LEITUNG",
+			sectionParticipantsDimension: "ABS · TEILNEHMER",
+			formParticipantLabel: "FORM · TEILNEHMER",
+			buttonAddDimension: "SCHALTFLÄCHE · HINZUFÜGEN",
+			sectionLogbookDimension: "ABS · LOGBUCH",
+			logEntryLabel: "EINTRAG",
+			formLogbookLabel: "FORM · LOGBUCH",
+			buttonPublishDimension: "SCHALTFLÄCHE · VERÖFFENTLICHEN",
+			titleblockDimension: "STEMPEL · TITELBLOCK"
+		}
 	}
 };

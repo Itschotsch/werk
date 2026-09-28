@@ -221,6 +221,26 @@ export const fr: Messages = {
 		logDatetimeLabel: "Date & heure (optionnel, par défaut : maintenant)",
 		logTextLabel: "Contenu *",
 		logTextPlaceholder: "Détails sur l'avancement du projet...",
-		publishLogEntry: "Publier l'entrée"
+		publishLogEntry: "Publier l'entrée",
+		blueprint: {
+			figureHeader: "FIG. 01 // SPÉCIFICATION DE PROJET",
+			specificationLabel: "PROJET / SPÉCIFICATION",
+			drawingIdLabel: "ID DESSIN",
+			scaleLabel: "ÉCHELLE",
+			headerLabel: "FIG 0.1 · SPÉCIFICATION",
+			headerDimension: "ENTÊTE · 100%",
+			alertLabel: "ALERTE · ERREUR",
+			sectionDescriptionDimension: "SEC · DESCRIPTION",
+			sectionTagsDimension: "SEC · BALISES",
+			sectionLeadershipDimension: "SEC · DIRECTION",
+			sectionParticipantsDimension: "SEC · PARTICIPANTS",
+			formParticipantLabel: "FORM · PARTICIPANT",
+			buttonAddDimension: "BOUTON · AJOUTER",
+			sectionLogbookDimension: "SEC · JOURNAL",
+			logEntryLabel: "ENTRÉE",
+			formLogbookLabel: "FORM · JOURNAL",
+			buttonPublishDimension: "BOUTON · PUBLIER",
+			titleblockDimension: "TAMPON · CARTOUCHE"
+		}
 	}
 };

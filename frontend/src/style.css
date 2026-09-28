@@ -1,6 +1,20 @@
+@import "./blueprint.css" layer(blueprint);
+
 @layer default {
 	:root {
 		--primary-color: #0066cc;
+	}
+
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+
+	html,
+	body {
+		margin: 0;
+		padding: 0;
 	}
 
 	::selection {

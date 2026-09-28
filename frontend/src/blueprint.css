@@ -1,0 +1,500 @@
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Architects+Daughter&family=Caveat:wght@500&display=swap");
+
+:root {
+	/* Blue Blueprint Design Tokens - Constant across light and dark modes */
+	--bp-bg: #2e6fff;
+	--bp-panel: #2563eb;
+	--bp-sunk: #1d4ed8;
+	--bp-elev: #3b82f6;
+	--bp-ink: #ffffff;
+	--bp-mid: rgba(255, 255, 255, 0.85);
+	--bp-faint: rgba(255, 255, 255, 0.65);
+	--bp-line: rgba(255, 255, 255, 0.28);
+	--bp-line2: rgba(255, 255, 255, 0.14);
+	--bp-ac: #ffffff;
+	--bp-ac2: #93c5fd;
+	--bp-glow: rgba(255, 255, 255, 0.25);
+	--bp-grid-major: rgba(255, 255, 255, 0.22);
+	--bp-grid-minor: rgba(255, 255, 255, 0.09);
+
+	/* Fonts */
+	--sans: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+	--mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, monospace;
+	--hand: "Architects Daughter", "Bradley Hand", cursive;
+	--draft: "Caveat", cursive;
+
+	/* Spacing Scale */
+	--s1: 4px;
+	--s2: 8px;
+	--s3: 12px;
+	--s4: 16px;
+	--s5: 24px;
+	--s6: 32px;
+	--s7: 48px;
+	--s8: 72px;
+	--s9: 104px;
+	--gut: 28px;
+	--r: 10px;
+	--r-sm: 6px;
+
+	/* Shadows */
+	--sh1: 0 1px 2px rgba(10, 20, 40, 0.15), 0 1px 1px rgba(10, 20, 40, 0.1);
+	--sh2: 0 2px 4px rgba(10, 20, 40, 0.15), 0 6px 16px -6px rgba(10, 20, 40, 0.2);
+	--sh3: 0 4px 8px rgba(10, 20, 40, 0.2), 0 18px 40px -12px rgba(10, 20, 40, 0.3);
+	--shin: inset 0 1px 2px rgba(10, 20, 40, 0.2);
+
+	/* Worn Texture Data SVG */
+	--worn: url("data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27240%27 height=%27240%27%3E%3Cfilter id=%27g%27 x=%270%27 y=%270%27 width=%271%27 height=%271%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%270.9%27 numOctaves=%272%27 seed=%275%27 result=%27n%27/%3E%3CfeColorMatrix in=%27n%27 values=%270 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.180 0.180%27 result=%27a%27/%3E%3CfeComposite in=%27SourceGraphic%27 in2=%27a%27 operator=%27in%27/%3E%3C/filter%3E%3Crect width=%27240%27 height=%27240%27 fill=%27%23FFFFFF%27 filter=%27url(%23g)%27/%3E%3C/svg%3E");
+}
+
+/* Minimal Basic Reset */
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/* Layout Wrapper Container */
+.wrap {
+	max-width: 1060px;
+	margin: 0 auto;
+	padding: 0 var(--gut);
+	position: relative;
+	z-index: 5;
+}
+
+/* Blueprint Sheet Background & Grid Pattern with --worn Texture */
+.sheet {
+	position: relative;
+	background-color: var(--bp-bg);
+	color: var(--bp-ink);
+	font-family: var(--sans);
+	font-size: 15.5px;
+	line-height: 1.62;
+	letter-spacing: -0.005em;
+	padding: var(--s6) var(--gut);
+	min-height: 100vh;
+	background-image:
+		var(--worn), linear-gradient(var(--bp-grid-major) 1px, transparent 1px),
+		linear-gradient(90deg, var(--bp-grid-major) 1px, transparent 1px),
+		linear-gradient(var(--bp-grid-minor) 1px, transparent 1px),
+		linear-gradient(90deg, var(--bp-grid-minor) 1px, transparent 1px);
+	background-size:
+		240px 240px,
+		100px 100px,
+		100px 100px,
+		20px 20px,
+		20px 20px;
+	background-position:
+		0 0,
+		34px 34px,
+		34px 34px,
+		34px 34px,
+		34px 34px;
+	background-blend-mode: overlay, normal, normal, normal, normal;
+	overflow-x: clip;
+}
+
+.sheet::before {
+	content: "";
+	position: absolute;
+	inset: 0;
+	background-image: var(--worn);
+	background-size: 240px 240px;
+	opacity: 0.3;
+	mix-blend-mode: overlay;
+	pointer-events: none;
+	z-index: 1;
+}
+
+/* Selection Highlight - White on Blue */
+.sheet ::selection {
+	background: #ffffff;
+	color: var(--bp-bg);
+	-webkit-text-fill-color: var(--bp-bg);
+}
+
+/* Corner Crop Registration Marks with --worn Texture */
+.corner {
+	position: relative;
+}
+
+.corner::before,
+.corner::after {
+	content: "";
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	pointer-events: none;
+	border-image: var(--worn) 1 repeat;
+}
+
+.corner::before {
+	top: 16px;
+	left: 16px;
+	border-top: 1px solid var(--bp-line);
+	border-left: 1px solid var(--bp-line);
+}
+
+.corner::after {
+	bottom: 16px;
+	right: 16px;
+	border-bottom: 1px solid var(--bp-line);
+	border-right: 1px solid var(--bp-line);
+}
+
+/* Cross-hatching & CAD Hatch Pattern */
+.frame-hatch,
+.hatch {
+	position: absolute;
+	inset: 0;
+	background: repeating-linear-gradient(
+		-45deg,
+		rgba(255, 255, 255, 0.08) 0 1px,
+		transparent 1px 8px
+	);
+	pointer-events: none;
+}
+
+.hatch-right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	width: 120px;
+	background: repeating-linear-gradient(
+		-45deg,
+		rgba(255, 255, 255, 0.1) 0 1px,
+		transparent 1px 8px
+	);
+	pointer-events: none;
+	border-left: 1px solid var(--bp-line);
+	border-image: var(--worn) 1 repeat;
+}
+
+/* Frame Rails & Guide Lines with --worn Texture */
+.frame,
+.footframe {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
+
+.frame-rail,
+.frail {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	width: 1px;
+	border-left: 1px solid var(--bp-line);
+	border-image: var(--worn) 1 repeat;
+	pointer-events: none;
+}
+
+.frame-rail.l {
+	left: var(--gut);
+}
+
+.frame-rail.r {
+	right: var(--gut);
+}
+
+/* Technical Figure Header with --worn Texture */
+.figure {
+	font-family: var(--mono);
+	font-size: 11px;
+	letter-spacing: 0.1em;
+	color: var(--bp-faint);
+	text-transform: uppercase;
+	margin: 0 0 var(--s3);
+	display: inline-flex;
+	align-items: center;
+	gap: 7px;
+}
+
+.figure::before {
+	content: "";
+	width: 5px;
+	height: 5px;
+	border: 1px solid var(--bp-faint);
+	border-image: var(--worn) 1 repeat;
+	transform: rotate(45deg);
+	display: inline-block;
+}
+
+/* Links inside Blueprint */
+.sheet a {
+	color: #ffffff;
+	text-decoration: underline dotted;
+	text-underline-offset: 3px;
+	transition: color 0.14s ease;
+}
+
+.sheet a:hover {
+	color: var(--bp-ac2);
+}
+
+/* Technical Title Stamp Block with --worn Texture */
+.titleblock {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr);
+	margin-top: var(--s8);
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-image: var(--worn) 1 repeat;
+	font-family: var(--mono);
+	font-size: 10px;
+	letter-spacing: 0.04em;
+	color: rgba(255, 255, 255, 0.85);
+	background: rgba(255, 255, 255, 0.04);
+}
+
+.titleblock .row,
+.titleblock .cell {
+	padding: 7px 12px;
+	border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+	border-image: var(--worn) 1 repeat;
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.titleblock .grid-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.titleblock .grid-2 .cell:first-child {
+	border-right: 1px solid rgba(255, 255, 255, 0.18);
+	border-image: var(--worn) 1 repeat;
+}
+
+.titleblock .label {
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 8.5px;
+	color: rgba(255, 255, 255, 0.65);
+	margin-bottom: 2px;
+}
+
+.titleblock .value {
+	color: #ffffff;
+	font-weight: 600;
+	overflow-wrap: anywhere;
+}
+
+/* Blueprint Rule Lines with --worn Texture */
+.rule {
+	height: 1px;
+	border-bottom: 1px solid var(--bp-line);
+	border-image: var(--worn) 1 repeat;
+	margin: var(--s3) 0;
+}
+
+/* Worn Border Container / Card with --worn Texture */
+.card {
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-image: var(--worn) 1 repeat;
+	border-radius: var(--r-sm);
+	padding: var(--s4);
+	background: rgba(255, 255, 255, 0.06);
+	box-shadow: var(--sh1);
+	margin-bottom: var(--s4);
+}
+
+/* Blueprint Button Style */
+.button {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	background: linear-gradient(to bottom, #ffffff 30%, #e0e7ff);
+	color: #2e6fff;
+	border: 0;
+	border-radius: 9px;
+	padding: 10px 20px;
+	font-family: inherit;
+	font-size: 14.5px;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	cursor: pointer;
+	box-shadow:
+		inset 0 0 0 1px rgba(43, 104, 238, 0.2),
+		inset 0 1px #ffffff,
+		0 1px 2px rgba(10, 12, 16, 0.18);
+	transition:
+		box-shadow 0.14s ease,
+		transform 0.14s ease;
+}
+
+.button:hover {
+	transform: translateY(-1px);
+	box-shadow:
+		inset 0 0 0 1px rgba(43, 104, 238, 0.3),
+		inset 0 1px #ffffff,
+		0 4px 12px rgba(10, 12, 16, 0.25);
+}
+
+/* Dimensions Outline & Measurement Overlay on Hover / Active */
+.button,
+.card,
+.dimension {
+	position: relative;
+}
+
+.button:hover::before,
+.card:hover::before,
+.dimension:hover::before {
+	content: "";
+	position: absolute;
+	inset: -6px;
+	border: 1px dashed rgba(255, 255, 255, 0.6);
+	border-radius: calc(var(--r-sm) + 4px);
+	pointer-events: none;
+}
+
+/* Interactive Dimension Label Badge */
+.button[data-dim]:hover::after,
+.card[data-dim]:hover::after,
+.dimension[data-dim]:hover::after {
+	content: attr(data-dim);
+	position: absolute;
+	top: -22px;
+	right: 0;
+	font-family: var(--mono);
+	font-size: 9px;
+	letter-spacing: 0.06em;
+	color: #ffffff;
+	background: rgba(10, 20, 50, 0.85);
+	padding: 2px 6px;
+	border: 1px solid rgba(255, 255, 255, 0.4);
+	border-image: var(--worn) 1 repeat;
+	border-radius: 3px;
+	pointer-events: none;
+	z-index: 10;
+}
+
+/* Annotation Circles, Crosshairs & Dotted Markings */
+.circle {
+	width: 36px;
+	height: 36px;
+	border: 1px dashed rgba(255, 255, 255, 0.6);
+	border-radius: 50%;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+.circle::after {
+	content: "";
+	width: 5px;
+	height: 5px;
+	background: #ffffff;
+	border-radius: 50%;
+}
+
+/* Target Crosshair Marker */
+.target {
+	position: relative;
+	display: inline-block;
+}
+
+.target::before,
+.target::after {
+	content: "";
+	position: absolute;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+.target::before {
+	top: 50%;
+	left: -8px;
+	right: -8px;
+	height: 1px;
+}
+
+.target::after {
+	left: 50%;
+	top: -8px;
+	bottom: -8px;
+	width: 1px;
+}
+
+/* Annotation Box with Callout Label with --worn Texture */
+.box {
+	border: 1px solid rgba(255, 255, 255, 0.35);
+	border-image: var(--worn) 1 repeat;
+	background: rgba(255, 255, 255, 0.05);
+	padding: var(--s3);
+	position: relative;
+	margin-bottom: var(--s4);
+}
+
+.box[data-label]::before {
+	content: attr(data-label);
+	position: absolute;
+	top: -10px;
+	left: 12px;
+	font-family: var(--mono);
+	font-size: 9px;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: rgba(255, 255, 255, 0.85);
+	background: var(--bp-bg);
+	padding: 0 5px;
+}
+
+/* Map & Technical Vector Graphics */
+.visitmap {
+	width: 100%;
+	height: auto;
+}
+
+.visitmap line {
+	stroke: rgba(255, 255, 255, 0.22);
+	stroke-width: 0.5;
+}
+
+.visitmap line.equator {
+	stroke: rgba(255, 255, 255, 0.5);
+	stroke-dasharray: 2 2;
+}
+
+.visitmap line.tropic {
+	stroke: rgba(255, 255, 255, 0.3);
+	stroke-dasharray: 1 2;
+}
+
+.visitmap rect {
+	fill: rgba(255, 255, 255, 0.7);
+}
+
+.visitmap rect.night {
+	fill: rgba(255, 255, 255, 0.18);
+}
+
+.visitmap .target {
+	fill: none;
+	stroke: #ffffff;
+	stroke-width: 0.5;
+	stroke-dasharray: 1 1;
+}
+
+/* Utility Classes */
+.draft {
+	font-family: var(--hand);
+	color: #ffffff;
+}
+
+.hand {
+	font-family: var(--draft);
+}
+
+.mono,
+.monospace {
+	font-family: var(--mono);
+}

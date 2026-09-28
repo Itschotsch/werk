@@ -223,6 +223,26 @@ export interface ProjectsMessages {
 	logTextLabel: string;
 	logTextPlaceholder: string;
 	publishLogEntry: string;
+	blueprint: {
+		figureHeader: string;
+		specificationLabel: string;
+		drawingIdLabel: string;
+		scaleLabel: string;
+		headerLabel: string;
+		headerDimension: string;
+		alertLabel: string;
+		sectionDescriptionDimension: string;
+		sectionTagsDimension: string;
+		sectionLeadershipDimension: string;
+		sectionParticipantsDimension: string;
+		formParticipantLabel: string;
+		buttonAddDimension: string;
+		sectionLogbookDimension: string;
+		logEntryLabel: string;
+		formLogbookLabel: string;
+		buttonPublishDimension: string;
+		titleblockDimension: string;
+	};
 }
 
 export interface Messages {

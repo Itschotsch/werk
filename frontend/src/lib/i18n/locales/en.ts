@@ -220,6 +220,26 @@ export const en: Messages = {
 		logDatetimeLabel: "Date & time (optional, default: now)",
 		logTextLabel: "Content *",
 		logTextPlaceholder: "Details on the progress of the project...",
-		publishLogEntry: "Publish entry"
+		publishLogEntry: "Publish entry",
+		blueprint: {
+			figureHeader: "FIG. 01 // PROJECT SPECIFICATION",
+			specificationLabel: "PROJECT / SPECIFICATION",
+			drawingIdLabel: "DRAWING ID",
+			scaleLabel: "SCALE",
+			headerLabel: "FIG 0.1 · SPECIFICATION",
+			headerDimension: "HDR · 100%",
+			alertLabel: "ALERT · ERROR",
+			sectionDescriptionDimension: "SEC · DESCRIPTION",
+			sectionTagsDimension: "SEC · TAGS",
+			sectionLeadershipDimension: "SEC · LEADERSHIP",
+			sectionParticipantsDimension: "SEC · PARTICIPANTS",
+			formParticipantLabel: "FORM · PARTICIPANT",
+			buttonAddDimension: "BTN · ADD",
+			sectionLogbookDimension: "SEC · LOGBOOK",
+			logEntryLabel: "ENTRY",
+			formLogbookLabel: "FORM · LOGBOOK",
+			buttonPublishDimension: "BTN · PUBLISH",
+			titleblockDimension: "STAMP · TITLEBLOCK"
+		}
 	}
 };

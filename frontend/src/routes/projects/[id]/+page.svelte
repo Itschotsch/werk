@@ -18,196 +18,242 @@
 	<title>{i18n.t.pageTitle(`${project.title} | ${i18n.t.pages.projects.title}`)}</title>
 </svelte:head>
 
-<div>
-	<header>
-		<p><a href="/projects">{i18n.t.projects.allProjects}</a></p>
-		<h1>{project.title}</h1>
-		{#if project.statusHistory && project.statusHistory.length > 0 && project.statusHistory[0]}
-			{@const currentStatus = project.statusHistory[0].status}
-			<p>
-				<strong>{i18n.t.projects.statusLabel}:</strong>
-				{i18n.t.projectStatus[currentStatus] || currentStatus}
-			</p>
-		{/if}
-	</header>
+<div class="sheet corner">
+	<div class="frame" aria-hidden="true">
+		<i class="frame-rail l"></i>
+		<i class="frame-rail r"></i>
+		<i class="frame-hatch hatch-right"></i>
+	</div>
 
-	{#if form?.error}
-		<div role="alert">
-			<p>{i18n.t.projects.actionFailed}: {form.error}</p>
-		</div>
-	{/if}
-
-	<main>
-		<section>
-			<h2>{i18n.t.projects.description}</h2>
-			{#if project.description}
-				<p>{project.description}</p>
-			{:else}
-				<p>{i18n.t.projects.noDescription}</p>
+	<div class="wrap">
+		<header
+			class="box"
+			data-label={i18n.t.projects.blueprint.headerLabel}
+			data-dim={i18n.t.projects.blueprint.headerDimension}
+		>
+			<p class="figure">{i18n.t.projects.blueprint.figureHeader}</p>
+			<p><a href="/projects">{i18n.t.projects.allProjects}</a></p>
+			<h1>{project.title}</h1>
+			{#if project.statusHistory && project.statusHistory.length > 0 && project.statusHistory[0]}
+				{@const currentStatus = project.statusHistory[0].status}
+				<p>
+					<strong>{i18n.t.projects.statusLabel}:</strong>
+					{i18n.t.projectStatus[currentStatus] || currentStatus}
+				</p>
 			{/if}
-		</section>
+		</header>
 
-		{#if project.tags && project.tags.length > 0}
-			<section>
-				<h2>{i18n.t.projects.tags}</h2>
+		{#if form?.error}
+			<div role="alert" class="box" data-label={i18n.t.projects.blueprint.alertLabel}>
+				<p>{i18n.t.projects.actionFailed}: {form.error}</p>
+			</div>
+		{/if}
+
+		<main>
+			<section class="card" data-dim={i18n.t.projects.blueprint.sectionDescriptionDimension}>
+				<h2>{i18n.t.projects.description}</h2>
+				{#if project.description}
+					<p>{project.description}</p>
+				{:else}
+					<p>{i18n.t.projects.noDescription}</p>
+				{/if}
+			</section>
+
+			{#if project.tags && project.tags.length > 0}
+				<section class="card" data-dim={i18n.t.projects.blueprint.sectionTagsDimension}>
+					<h2>{i18n.t.projects.tags}</h2>
+					<ul>
+						{#each project.tags as tag (tag)}
+							<li>#{tag}</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
+
+			<section class="card" data-dim={i18n.t.projects.blueprint.sectionLeadershipDimension}>
+				<h2>{i18n.t.projects.leadership}</h2>
 				<ul>
-					{#each project.tags as tag (tag)}
-						<li>#{tag}</li>
+					{#each project.leaders as leader (leader.id)}
+						<li>
+							<a href="/user/{leader.username}">{leader.displayName || leader.username}</a>
+							<small>(@{leader.username})</small>
+						</li>
 					{/each}
 				</ul>
 			</section>
-		{/if}
 
-		<section>
-			<h2>{i18n.t.projects.leadership}</h2>
-			<ul>
-				{#each project.leaders as leader (leader.id)}
-					<li>
-						<a href="/user/{leader.username}">{leader.displayName || leader.username}</a>
-						<small>(@{leader.username})</small>
-					</li>
-				{/each}
-			</ul>
-		</section>
-
-		<section>
-			<h2>
-				{i18n.t.projects.participantsAndCredits} ({project.participants
-					? project.participants.length
-					: 0})
-			</h2>
-			{#if project.participants && project.participants.length > 0}
-				<ul>
-					{#each project.participants as p (p._id || p.role)}
-						<li>
-							{#if p.user}
-								<a href="/user/{p.user.username}">{p.user.displayName || p.user.username}</a>
-							{:else}
-								<span>{p.name || i18n.t.projects.unknown}</span>
-							{/if}
-							<span>– <strong>{p.role}</strong></span>
-							{#if p.status === "pending"}
-								<small> ({i18n.t.projects.pendingTag})</small>
-							{/if}
-							{#if p.contributionNote}
-								<p><small>{p.contributionNote}</small></p>
-							{/if}
-						</li>
-					{/each}
-				</ul>
-			{:else}
-				<p>{i18n.t.projects.noParticipants}</p>
-			{/if}
-
-			{#if project.isLeader}
-				<article>
-					<h3>{i18n.t.projects.addParticipant}</h3>
-					<form method="post" action="?/addParticipant" use:enhance>
-						<div>
-							<label for="usernameOrEmail">{i18n.t.projects.userLabel}</label>
-							<input
-								type="text"
-								id="usernameOrEmail"
-								name="usernameOrEmail"
-								placeholder={i18n.t.projects.userPlaceholder}
-							/>
-						</div>
-						<div>
-							<label for="name">{i18n.t.projects.freeTextNameLabel}</label>
-							<input
-								type="text"
-								id="name"
-								name="name"
-								placeholder={i18n.t.projects.freeTextNamePlaceholder}
-							/>
-						</div>
-						<div>
-							<label for="role">{i18n.t.projects.roleLabel}</label>
-							<input
-								type="text"
-								id="role"
-								name="role"
-								required
-								placeholder={i18n.t.projects.rolePlaceholder}
-							/>
-						</div>
-						<button type="submit">{i18n.t.projects.addParticipant}</button>
-					</form>
-				</article>
-			{/if}
-		</section>
-
-		<section>
-			<h2>{i18n.t.projects.logbookTitle} ({project.logEntries ? project.logEntries.length : 0})</h2>
-			{#if project.logEntries && project.logEntries.length > 0}
-				<ul>
-					{#each project.logEntries as log (log._id || log.title)}
-						<li>
-							<article>
-								<h3>{log.title}</h3>
-								{#if log.location?.name}
-									<p><small>{i18n.t.projects.locationLabel}: {log.location.name}</small></p>
+			<section class="card" data-dim={i18n.t.projects.blueprint.sectionParticipantsDimension}>
+				<h2>
+					{i18n.t.projects.participantsAndCredits} ({project.participants
+						? project.participants.length
+						: 0})
+				</h2>
+				{#if project.participants && project.participants.length > 0}
+					<ul>
+						{#each project.participants as p (p._id || p.role)}
+							<li>
+								{#if p.user}
+									<a href="/user/{p.user.username}">{p.user.displayName || p.user.username}</a>
+								{:else}
+									<span>{p.name || i18n.t.projects.unknown}</span>
 								{/if}
-								<p>{log.text}</p>
-								{#if log.author}
-									<p>
-										<small
-											>{i18n.t.projects.authoredBy}:
-											<a href="/user/{log.author.username}">
-												{log.author.displayName || log.author.username}
-											</a>
-										</small>
-									</p>
+								<span>– <strong>{p.role}</strong></span>
+								{#if p.status === "pending"}
+									<small> ({i18n.t.projects.pendingTag})</small>
 								{/if}
-							</article>
-						</li>
-					{/each}
-				</ul>
-			{:else}
-				<p>{i18n.t.projects.noLogEntries}</p>
-			{/if}
+								{#if p.contributionNote}
+									<p><small>{p.contributionNote}</small></p>
+								{/if}
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p>{i18n.t.projects.noParticipants}</p>
+				{/if}
 
-			{#if project.isLeader}
-				<article>
-					<h3>{i18n.t.projects.writeLogEntry}</h3>
-					<form method="post" action="?/addLogEntry" use:enhance>
-						<div>
-							<label for="logTitle">{i18n.t.projects.logTitleLabel}</label>
-							<input
-								type="text"
-								id="logTitle"
-								name="title"
-								required
-								placeholder={i18n.t.projects.logTitlePlaceholder}
-							/>
-						</div>
-						<div>
-							<label for="locationName">{i18n.t.projects.logLocationLabel}</label>
-							<input
-								type="text"
-								id="locationName"
-								name="locationName"
-								placeholder={i18n.t.projects.logLocationPlaceholder}
-							/>
-						</div>
-						<div>
-							<label for="logDatetime">{i18n.t.projects.logDatetimeLabel}</label>
-							<input type="datetime-local" id="logDatetime" name="datetime" />
-						</div>
-						<div>
-							<label for="logText">{i18n.t.projects.logTextLabel}</label>
-							<textarea
-								id="logText"
-								name="text"
-								rows="5"
-								required
-								placeholder={i18n.t.projects.logTextPlaceholder}
-							></textarea>
-						</div>
-						<button type="submit">{i18n.t.projects.publishLogEntry}</button>
-					</form>
-				</article>
-			{/if}
-		</section>
-	</main>
+				{#if project.isLeader}
+					<div class="rule"></div>
+					<article class="box" data-label={i18n.t.projects.blueprint.formParticipantLabel}>
+						<h3>{i18n.t.projects.addParticipant}</h3>
+						<form method="post" action="?/addParticipant" use:enhance>
+							<div>
+								<label for="usernameOrEmail">{i18n.t.projects.userLabel}</label>
+								<input
+									type="text"
+									id="usernameOrEmail"
+									name="usernameOrEmail"
+									placeholder={i18n.t.projects.userPlaceholder}
+								/>
+							</div>
+							<div>
+								<label for="name">{i18n.t.projects.freeTextNameLabel}</label>
+								<input
+									type="text"
+									id="name"
+									name="name"
+									placeholder={i18n.t.projects.freeTextNamePlaceholder}
+								/>
+							</div>
+							<div>
+								<label for="role">{i18n.t.projects.roleLabel}</label>
+								<input
+									type="text"
+									id="role"
+									name="role"
+									required
+									placeholder={i18n.t.projects.rolePlaceholder}
+								/>
+							</div>
+							<button
+								type="submit"
+								class="button"
+								data-dim={i18n.t.projects.blueprint.buttonAddDimension}
+							>
+								{i18n.t.projects.addParticipant}
+							</button>
+						</form>
+					</article>
+				{/if}
+			</section>
+
+			<section class="card" data-dim={i18n.t.projects.blueprint.sectionLogbookDimension}>
+				<h2>
+					{i18n.t.projects.logbookTitle} ({project.logEntries ? project.logEntries.length : 0})
+				</h2>
+				{#if project.logEntries && project.logEntries.length > 0}
+					<ul>
+						{#each project.logEntries as log (log._id || log.title)}
+							<li>
+								<article class="box" data-label={i18n.t.projects.blueprint.logEntryLabel}>
+									<h3>{log.title}</h3>
+									{#if log.location?.name}
+										<p><small>{i18n.t.projects.locationLabel}: {log.location.name}</small></p>
+									{/if}
+									<p>{log.text}</p>
+									{#if log.author}
+										<p>
+											<small
+												>{i18n.t.projects.authoredBy}:
+												<a href="/user/{log.author.username}">
+													{log.author.displayName || log.author.username}
+												</a>
+											</small>
+										</p>
+									{/if}
+								</article>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<p>{i18n.t.projects.noLogEntries}</p>
+				{/if}
+
+				{#if project.isLeader}
+					<div class="rule"></div>
+					<article class="box" data-label={i18n.t.projects.blueprint.formLogbookLabel}>
+						<h3>{i18n.t.projects.writeLogEntry}</h3>
+						<form method="post" action="?/addLogEntry" use:enhance>
+							<div>
+								<label for="logTitle">{i18n.t.projects.logTitleLabel}</label>
+								<input
+									type="text"
+									id="logTitle"
+									name="title"
+									required
+									placeholder={i18n.t.projects.logTitlePlaceholder}
+								/>
+							</div>
+							<div>
+								<label for="locationName">{i18n.t.projects.logLocationLabel}</label>
+								<input
+									type="text"
+									id="locationName"
+									name="locationName"
+									placeholder={i18n.t.projects.logLocationPlaceholder}
+								/>
+							</div>
+							<div>
+								<label for="logDatetime">{i18n.t.projects.logDatetimeLabel}</label>
+								<input type="datetime-local" id="logDatetime" name="datetime" />
+							</div>
+							<div>
+								<label for="logText">{i18n.t.projects.logTextLabel}</label>
+								<textarea
+									id="logText"
+									name="text"
+									rows="5"
+									required
+									placeholder={i18n.t.projects.logTextPlaceholder}
+								></textarea>
+							</div>
+							<button
+								type="submit"
+								class="button"
+								data-dim={i18n.t.projects.blueprint.buttonPublishDimension}
+							>
+								{i18n.t.projects.publishLogEntry}
+							</button>
+						</form>
+					</article>
+				{/if}
+			</section>
+
+			<aside class="titleblock" data-dim={i18n.t.projects.blueprint.titleblockDimension}>
+				<div class="row">
+					<span class="label">{i18n.t.projects.blueprint.specificationLabel}</span>
+					<strong class="value">{project.title}</strong>
+				</div>
+				<div class="grid-2">
+					<div class="cell">
+						<span class="label">{i18n.t.projects.blueprint.drawingIdLabel}</span>
+						<span class="value monospace">#{project.id ? project.id.slice(-8) : "000000"}</span>
+					</div>
+					<div class="cell">
+						<span class="label">{i18n.t.projects.blueprint.scaleLabel}</span>
+						<span class="value monospace">1:1</span>
+					</div>
+				</div>
+			</aside>
+		</main>
+	</div>
 </div>
