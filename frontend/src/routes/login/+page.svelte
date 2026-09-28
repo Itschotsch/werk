@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ActionData } from './$types';
-	import { useI18n } from '$lib/i18n';
+	import type { ActionData } from "./$types";
+	import { useI18n } from "$lib/i18n";
 
 	interface Props {
 		form: ActionData;
@@ -30,7 +30,7 @@
 				required
 				autocomplete="username"
 				placeholder={i18n.t.auth.login.identifierPlaceholder}
-				value={form?.identifier ?? ''}
+				value={form?.identifier ?? ""}
 			/>
 		</div>
 

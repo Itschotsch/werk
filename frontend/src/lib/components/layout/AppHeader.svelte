@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import { page } from '$app/state';
-	import type { NavItem, UserSummary } from '$lib/types/navigation';
-	import { useI18n } from '$lib/i18n';
+	import type { Snippet } from "svelte";
+	import { page } from "$app/state";
+	import type { NavItem, UserSummary } from "$lib/types/navigation";
+	import { useI18n } from "$lib/i18n";
 
 	interface Props {
 		title?: string;
@@ -14,7 +14,7 @@
 	}
 
 	let {
-		title = 'Werk',
+		title = "Werk",
 		navItems,
 		user = null,
 		searchSnippet,
@@ -26,9 +26,9 @@
 
 	const resolvedNavItems = $derived(
 		navItems ?? [
-			{ label: i18n.t.header.nav.projects, href: '/projects' },
-			{ label: i18n.t.header.nav.creatives, href: '/creatives' },
-			{ label: i18n.t.header.nav.explore, href: '/explore' }
+			{ label: i18n.t.header.nav.projects, href: "/projects" },
+			{ label: i18n.t.header.nav.creatives, href: "/creatives" },
+			{ label: i18n.t.header.nav.explore, href: "/explore" }
 		]
 	);
 
@@ -36,7 +36,7 @@
 		if (item.exact) {
 			return currentPath === item.href;
 		}
-		return currentPath === item.href || (item.href !== '/' && currentPath.startsWith(item.href));
+		return currentPath === item.href || (item.href !== "/" && currentPath.startsWith(item.href));
 	}
 </script>
 
@@ -51,7 +51,7 @@
 				{#each resolvedNavItems as item (item.href)}
 					{@const active = isActive(item, page.url.pathname)}
 					<li>
-						<a href={item.href} aria-current={active ? 'page' : undefined}>
+						<a href={item.href} aria-current={active ? "page" : undefined}>
 							{item.label}
 						</a>
 					</li>

@@ -1,20 +1,21 @@
-import { error, fail, type Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
-import { getUserProfile, updateUserProfile, SESSION_COOKIE_NAME } from '$lib/server/api';
-import type { UserLocation } from '$lib/types/profile';
+import { error, fail, type Actions } from "@sveltejs/kit";
+import type { PageServerLoad } from "./$types";
+import { getUserProfile, updateUserProfile, SESSION_COOKIE_NAME } from "$lib/server/api";
+import type { UserLocation } from "$lib/types/profile";
 
 export const load: PageServerLoad = async ({ params, fetch, cookies }) => {
 	const sessionToken = cookies.get(SESSION_COOKIE_NAME);
-	const profile = await getUserProfile(fetch, params.username, sessionToken);
+	const data = await getUserProfile(fetch, params.username, sessionToken);
 
-	if (!profile) {
+	if (!data) {
 		throw error(404, {
-			message: 'USER_NOT_FOUND'
+			message: "USER_NOT_FOUND"
 		});
 	}
 
 	return {
-		profile
+		profile: data.user,
+		projects: data.projects
 	};
 };
 
@@ -23,23 +24,23 @@ export const actions: Actions = {
 		const sessionToken = cookies.get(SESSION_COOKIE_NAME);
 		if (!locals.user || !sessionToken) {
 			return fail(401, {
-				error: 'UNAUTHORIZED'
+				error: "UNAUTHORIZED"
 			});
 		}
 
 		const formData = await request.formData();
-		const displayName = formData.get('displayName')?.toString() ?? '';
-		const biography = formData.get('biography')?.toString() ?? '';
-		const locationsStr = formData.get('locations')?.toString() ?? '';
-		const rolesStr = formData.get('roles')?.toString() ?? '';
-		const website = formData.get('website')?.toString() ?? '';
+		const displayName = formData.get("displayName")?.toString() ?? "";
+		const biography = formData.get("biography")?.toString() ?? "";
+		const locationsStr = formData.get("locations")?.toString() ?? "";
+		const rolesStr = formData.get("roles")?.toString() ?? "";
+		const website = formData.get("website")?.toString() ?? "";
 
 		// Parse locations string (split by newlines or commas) into UserLocation objects
 		const existingLocationsMap = new Map<string, UserLocation>();
 		// Get existing profile to preserve lat/lon/placeId for unchanged location names
 		const currentProfile = await getUserProfile(fetch, locals.user.username, sessionToken);
-		if (currentProfile?.locations) {
-			for (const loc of currentProfile.locations) {
+		if (currentProfile?.user?.locations) {
+			for (const loc of currentProfile.user.locations) {
 				existingLocationsMap.set(loc.name.toLowerCase().trim(), loc);
 			}
 		}
@@ -61,7 +62,7 @@ export const actions: Actions = {
 		});
 
 		const roles = rolesStr
-			.split(',')
+			.split(",")
 			.map((r) => r.trim())
 			.filter((r) => r.length > 0);
 
@@ -75,7 +76,7 @@ export const actions: Actions = {
 
 		if (!result.success || !result.user) {
 			return fail(400, {
-				error: result.error || 'UPDATE_FAILED',
+				error: result.error || "UPDATE_FAILED",
 				fields: { displayName, biography, locationsStr, rolesStr, website }
 			});
 		}

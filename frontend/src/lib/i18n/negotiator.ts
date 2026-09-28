@@ -1,6 +1,6 @@
-import Negotiator from 'negotiator';
-import { match } from '@formatjs/intl-localematcher';
-import { DEFAULT_LOCALE, isSupportedLocale, SUPPORTED_LOCALES, type Locale } from './types';
+import Negotiator from "negotiator";
+import { match } from "@formatjs/intl-localematcher";
+import { DEFAULT_LOCALE, isSupportedLocale, SUPPORTED_LOCALES, type Locale } from "./types";
 
 export function resolveLocale(
 	acceptLanguageHeader?: string | null,
@@ -13,7 +13,7 @@ export function resolveLocale(
 	if (acceptLanguageHeader && acceptLanguageHeader.trim().length > 0) {
 		try {
 			const negotiator = new Negotiator({
-				headers: { 'accept-language': acceptLanguageHeader }
+				headers: { "accept-language": acceptLanguageHeader }
 			});
 			const requestedLanguages = negotiator.languages();
 			if (requestedLanguages.length > 0) {
@@ -31,7 +31,7 @@ export function resolveLocale(
 }
 
 export function detectBrowserLanguage(): Locale {
-	if (typeof navigator === 'undefined') {
+	if (typeof navigator === "undefined") {
 		return DEFAULT_LOCALE;
 	}
 

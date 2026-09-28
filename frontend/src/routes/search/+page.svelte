@@ -1,9 +1,9 @@
 <script lang="ts">
-	import { page } from '$app/state';
-	import { useI18n } from '$lib/i18n';
+	import { page } from "$app/state";
+	import { useI18n } from "$lib/i18n";
 
 	const i18n = useI18n();
-	const query = $derived(page.url.searchParams.get('q') || '');
+	const query = $derived(page.url.searchParams.get("q") || "");
 </script>
 
 <svelte:head>

@@ -1,27 +1,27 @@
-import crypto from 'node:crypto';
-import { promisify } from 'node:util';
-import type { Types } from 'mongoose';
-import { User, type IUser } from '../models/User.js';
-import { Session, type ISession } from '../models/Session.js';
+import crypto from "node:crypto";
+import { promisify } from "node:util";
+import type { Types } from "mongoose";
+import { User, type IUser } from "../models/User.js";
+import { Session, type ISession } from "../models/Session.js";
 
 const scryptAsync = promisify(crypto.scrypt);
 
 const SESSION_TTL_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 export function hashToken(rawToken: string): string {
-	return crypto.createHash('sha256').update(rawToken).digest('hex');
+	return crypto.createHash("sha256").update(rawToken).digest("hex");
 }
 
 export async function hashPassword(password: string): Promise<string> {
-	const salt = crypto.randomBytes(16).toString('hex');
+	const salt = crypto.randomBytes(16).toString("hex");
 	const derivedKey = (await scryptAsync(password, salt, 64)) as Buffer;
-	return `scrypt$${salt}$${derivedKey.toString('hex')}`;
+	return `scrypt$${salt}$${derivedKey.toString("hex")}`;
 }
 
 export async function verifyPassword(password: string, storedHash: string): Promise<boolean> {
 	try {
-		const parts = storedHash.split('$');
-		if (parts.length !== 3 || parts[0] !== 'scrypt') {
+		const parts = storedHash.split("$");
+		if (parts.length !== 3 || parts[0] !== "scrypt") {
 			return false;
 		}
 		const salt = parts[1];
@@ -29,7 +29,7 @@ export async function verifyPassword(password: string, storedHash: string): Prom
 		if (!salt || !keyHex) {
 			return false;
 		}
-		const expectedKey = Buffer.from(keyHex, 'hex');
+		const expectedKey = Buffer.from(keyHex, "hex");
 		const actualKey = (await scryptAsync(password, salt, 64)) as Buffer;
 
 		if (expectedKey.length !== actualKey.length) {
@@ -46,7 +46,7 @@ export async function createSession(
 	userAgent?: string,
 	ip?: string
 ): Promise<{ token: string; expiresAt: Date }> {
-	const rawToken = crypto.randomBytes(32).toString('hex');
+	const rawToken = crypto.randomBytes(32).toString("hex");
 	const tokenHash = hashToken(rawToken);
 	const expiresAt = new Date(Date.now() + SESSION_TTL_MS);
 
@@ -77,7 +77,7 @@ export async function createSession(
 export async function validateSession(
 	rawToken: string
 ): Promise<{ user: IUser; session: ISession } | null> {
-	if (!rawToken || typeof rawToken !== 'string') {
+	if (!rawToken || typeof rawToken !== "string") {
 		return null;
 	}
 
@@ -98,19 +98,19 @@ export async function validateSession(
 	}
 
 	let needsSave = false;
-	if (!user.email || user.email.trim() === '') {
+	if (!user.email || user.email.trim() === "") {
 		user.email = `user_${user._id.toString()}@werk.local`;
 		needsSave = true;
 	}
-	if (!user.username || user.username.trim() === '') {
-		const emailPrefix = user.email ? user.email.split('@')[0] : undefined;
+	if (!user.username || user.username.trim() === "") {
+		const emailPrefix = user.email ? user.email.split("@")[0] : undefined;
 		const candidate = (emailPrefix || `user_${user._id.toString().slice(-6)}`)
 			.toLowerCase()
-			.replace(/[^a-z0-9_-]/g, '_');
+			.replace(/[^a-z0-9_-]/g, "_");
 		user.username = candidate || `user_${user._id.toString().slice(-6)}`;
 		needsSave = true;
 	}
-	if (!user.displayName || user.displayName.trim() === '') {
+	if (!user.displayName || user.displayName.trim() === "") {
 		user.displayName = user.username;
 		needsSave = true;
 	}
@@ -122,7 +122,7 @@ export async function validateSession(
 }
 
 export async function revokeSession(rawToken: string): Promise<boolean> {
-	if (!rawToken || typeof rawToken !== 'string') {
+	if (!rawToken || typeof rawToken !== "string") {
 		return false;
 	}
 	const tokenHash = hashToken(rawToken);

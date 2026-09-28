@@ -1,10 +1,10 @@
-import { getContext, setContext } from 'svelte';
-import type { Locale, Messages } from './types';
-import { DEFAULT_LOCALE } from './types';
-import { de } from './locales/de';
-import { fr } from './locales/fr';
-import { it } from './locales/it';
-import { en } from './locales/en';
+import { getContext, setContext } from "svelte";
+import type { Locale, Messages } from "./types";
+import { DEFAULT_LOCALE } from "./types";
+import { de } from "./locales/de";
+import { fr } from "./locales/fr";
+import { it } from "./locales/it";
+import { en } from "./locales/en";
 
 export const dictionaries: Record<Locale, Messages> = {
 	de,
@@ -13,14 +13,14 @@ export const dictionaries: Record<Locale, Messages> = {
 	en
 };
 
-const I18N_CONTEXT_KEY = Symbol('werk:i18n');
+const I18N_CONTEXT_KEY = Symbol("werk:i18n");
 
 export class I18nManager {
 	#getLocale: () => Locale;
 	#overrideLocale = $state<Locale | null>(null);
 
 	constructor(localeOrGetter: Locale | (() => Locale) = DEFAULT_LOCALE) {
-		if (typeof localeOrGetter === 'function') {
+		if (typeof localeOrGetter === "function") {
 			this.#getLocale = localeOrGetter;
 		} else {
 			this.#getLocale = () => localeOrGetter;
@@ -50,7 +50,7 @@ export function useI18n(): I18nManager {
 	const manager = getContext<I18nManager>(I18N_CONTEXT_KEY);
 	if (!manager) {
 		throw new Error(
-			'useI18n() called outside of an active I18n context. Ensure initI18n() was called in +layout.svelte.'
+			"useI18n() called outside of an active I18n context. Ensure initI18n() was called in +layout.svelte."
 		);
 	}
 	return manager;

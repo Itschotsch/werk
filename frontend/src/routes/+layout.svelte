@@ -1,9 +1,9 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { LayoutData } from './$types';
-	import { initI18n } from '$lib/i18n';
-	import AppHeader from '$lib/components/layout/AppHeader.svelte';
-	import AppFooter from '$lib/components/layout/AppFooter.svelte';
+	import type { Snippet } from "svelte";
+	import type { LayoutData } from "./$types";
+	import { initI18n } from "$lib/i18n";
+	import AppHeader from "$lib/components/layout/AppHeader.svelte";
+	import AppFooter from "$lib/components/layout/AppFooter.svelte";
 
 	interface Props {
 		data: LayoutData;

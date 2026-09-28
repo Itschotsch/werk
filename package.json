@@ -11,7 +11,8 @@
 		"lint:fix": "eslint . --fix",
 		"format": "prettier --write frontend backend eslint.config.js package.json werk.code-workspace compose.yaml",
 		"format:check": "prettier --check frontend backend eslint.config.js package.json werk.code-workspace compose.yaml",
-		"precommit": "npm run format:check && npm run typecheck && npm run lint",
+		"check:i18n": "node scripts/check-i18n.js",
+		"precommit": "npm run format:check && npm run typecheck && npm run check:i18n && npm run lint",
 		"prepare": "git config core.hooksPath .githooks 2>/dev/null || true"
 	},
 	"devDependencies": {

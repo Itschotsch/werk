@@ -1,3 +1,5 @@
+import type { IProjectBacklink } from "./project.js";
+
 export interface UserLocation {
 	name: string;
 	lat?: number;
@@ -16,6 +18,7 @@ export interface UserProfile {
 	avatarUrl: string;
 	createdAt: string;
 	isOwner: boolean;
+	projects?: IProjectBacklink[];
 }
 
 export interface UpdateProfileRequest {

@@ -1,4 +1,4 @@
-import type { PageServerLoad } from './$types';
+import type { PageServerLoad } from "./$types";
 
 interface HelloResponse {
 	message: string;
@@ -6,13 +6,13 @@ interface HelloResponse {
 }
 
 export const load: PageServerLoad = async ({ fetch }) => {
-	const backendUrl = process.env.BACKEND_URL || 'http://localhost:3001';
+	const backendUrl = process.env.BACKEND_URL || "http://localhost:3001";
 	try {
 		const res = await fetch(`${backendUrl}/api/hello`);
 		if (!res.ok) {
 			return {
 				message: `Backend returned status ${res.status}`,
-				database: 'unknown'
+				database: "unknown"
 			};
 		}
 		const data = (await res.json()) as HelloResponse;
@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
 		const errorMessage = err instanceof Error ? err.message : String(err);
 		return {
 			message: `Failed to connect to backend: ${errorMessage}`,
-			database: 'disconnected'
+			database: "disconnected"
 		};
 	}
 };

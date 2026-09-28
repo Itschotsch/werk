@@ -6,8 +6,9 @@
 	"main": "dist/server.js",
 	"scripts": {
 		"dev": "tsx watch src/server.ts",
-		"build": "tsc",
+		"build": "tsc -p tsconfig.build.json",
 		"typecheck": "tsc --noEmit",
+		"test": "tsx --test tests/**/*.test.ts",
 		"start": "node dist/server.js"
 	},
 	"dependencies": {

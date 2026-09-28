@@ -1,12 +1,12 @@
-import type { FastifyPluginAsync } from 'fastify';
-import { User } from '../models/User.js';
+import type { FastifyPluginAsync } from "fastify";
+import { User } from "../models/User.js";
 import {
 	hashPassword,
 	verifyPassword,
 	createSession,
 	validateSession,
 	revokeSession
-} from '../services/auth.service.js';
+} from "../services/auth.service.js";
 
 interface RegisterBody {
 	email?: string;
@@ -22,43 +22,43 @@ interface LoginBody {
 
 export const authRoutes: FastifyPluginAsync = async (app) => {
 	// POST /api/auth/register
-	app.post<{ Body: RegisterBody }>('/register', async (request, reply) => {
+	app.post<{ Body: RegisterBody }>("/register", async (request, reply) => {
 		const { email, username, displayName, password } = request.body || {};
 
-		if (!email || typeof email !== 'string' || !email.includes('@')) {
+		if (!email || typeof email !== "string" || !email.includes("@")) {
 			return reply.status(400).send({
-				error: 'INVALID_EMAIL',
-				message: 'A valid email address is required'
+				error: "INVALID_EMAIL",
+				message: "A valid email address is required"
 			});
 		}
 
 		const cleanUsername = username?.trim().toLowerCase();
 		if (
 			!cleanUsername ||
-			typeof cleanUsername !== 'string' ||
+			typeof cleanUsername !== "string" ||
 			cleanUsername.length < 3 ||
 			cleanUsername.length > 30 ||
 			!/^[a-z0-9_-]+$/.test(cleanUsername)
 		) {
 			return reply.status(400).send({
-				error: 'INVALID_USERNAME',
+				error: "INVALID_USERNAME",
 				message:
-					'Username must be 3-30 characters and contain only letters, numbers, underscores, or hyphens'
+					"Username must be 3-30 characters and contain only letters, numbers, underscores, or hyphens"
 			});
 		}
 
 		const cleanDisplayName = displayName?.trim();
-		if (!cleanDisplayName || typeof cleanDisplayName !== 'string' || cleanDisplayName.length > 50) {
+		if (!cleanDisplayName || typeof cleanDisplayName !== "string" || cleanDisplayName.length > 50) {
 			return reply.status(400).send({
-				error: 'INVALID_DISPLAY_NAME',
-				message: 'Display name is required (max 50 characters)'
+				error: "INVALID_DISPLAY_NAME",
+				message: "Display name is required (max 50 characters)"
 			});
 		}
 
-		if (!password || typeof password !== 'string' || password.length < 8) {
+		if (!password || typeof password !== "string" || password.length < 8) {
 			return reply.status(400).send({
-				error: 'INVALID_PASSWORD',
-				message: 'Password must be at least 8 characters long'
+				error: "INVALID_PASSWORD",
+				message: "Password must be at least 8 characters long"
 			});
 		}
 
@@ -68,8 +68,8 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 		const existingEmail = await User.findOne({ email: cleanEmail });
 		if (existingEmail) {
 			return reply.status(409).send({
-				error: 'EMAIL_IN_USE',
-				message: 'Email address is already in use'
+				error: "EMAIL_IN_USE",
+				message: "Email address is already in use"
 			});
 		}
 
@@ -77,8 +77,8 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 		const existingUsername = await User.findOne({ username: cleanUsername });
 		if (existingUsername) {
 			return reply.status(409).send({
-				error: 'USERNAME_IN_USE',
-				message: 'Username is already taken'
+				error: "USERNAME_IN_USE",
+				message: "Username is already taken"
 			});
 		}
 
@@ -89,10 +89,10 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 			username: cleanUsername,
 			displayName: cleanDisplayName,
 			passwordHash,
-			authProviders: ['password']
+			authProviders: ["password"]
 		});
 
-		const userAgent = request.headers['user-agent'];
+		const userAgent = request.headers["user-agent"];
 		const ip = request.ip;
 		const session = await createSession(user._id, userAgent, ip);
 
@@ -109,18 +109,18 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 	});
 
 	// POST /api/auth/login
-	app.post<{ Body: LoginBody }>('/login', async (request, reply) => {
+	app.post<{ Body: LoginBody }>("/login", async (request, reply) => {
 		const { identifier, password } = request.body || {};
 
 		if (
 			!identifier ||
-			typeof identifier !== 'string' ||
+			typeof identifier !== "string" ||
 			!password ||
-			typeof password !== 'string'
+			typeof password !== "string"
 		) {
 			return reply.status(400).send({
-				error: 'INVALID_INPUT',
-				message: 'Identifier and password are required'
+				error: "INVALID_INPUT",
+				message: "Identifier and password are required"
 			});
 		}
 
@@ -132,20 +132,20 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 
 		if (!user || !user.passwordHash) {
 			return reply.status(401).send({
-				error: 'INVALID_CREDENTIALS',
-				message: 'Invalid username/email or password'
+				error: "INVALID_CREDENTIALS",
+				message: "Invalid username/email or password"
 			});
 		}
 
 		const isPasswordValid = await verifyPassword(password, user.passwordHash);
 		if (!isPasswordValid) {
 			return reply.status(401).send({
-				error: 'INVALID_CREDENTIALS',
-				message: 'Invalid username/email or password'
+				error: "INVALID_CREDENTIALS",
+				message: "Invalid username/email or password"
 			});
 		}
 
-		const userAgent = request.headers['user-agent'];
+		const userAgent = request.headers["user-agent"];
 		const ip = request.ip;
 		const session = await createSession(user._id, userAgent, ip);
 
@@ -162,11 +162,11 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 	});
 
 	// POST /api/auth/logout
-	app.post<{ Body?: { token?: string } }>('/logout', async (request, reply) => {
+	app.post<{ Body?: { token?: string } }>("/logout", async (request, reply) => {
 		let token: string | undefined = request.body?.token;
 
 		const authHeader = request.headers.authorization;
-		if (!token && authHeader?.startsWith('Bearer ')) {
+		if (!token && authHeader?.startsWith("Bearer ")) {
 			token = authHeader.substring(7).trim();
 		}
 
@@ -178,12 +178,12 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 	});
 
 	// GET /api/auth/me
-	app.get('/me', async (request, reply) => {
+	app.get("/me", async (request, reply) => {
 		const authHeader = request.headers.authorization;
-		if (!authHeader?.startsWith('Bearer ')) {
+		if (!authHeader?.startsWith("Bearer ")) {
 			return reply.status(401).send({
-				error: 'UNAUTHORIZED',
-				message: 'Authorization header with Bearer token is required'
+				error: "UNAUTHORIZED",
+				message: "Authorization header with Bearer token is required"
 			});
 		}
 
@@ -192,8 +192,8 @@ export const authRoutes: FastifyPluginAsync = async (app) => {
 
 		if (!result) {
 			return reply.status(401).send({
-				error: 'UNAUTHORIZED',
-				message: 'Invalid or expired session'
+				error: "UNAUTHORIZED",
+				message: "Invalid or expired session"
 			});
 		}
 

@@ -208,7 +208,6 @@ export interface IProjectLogEntry {
 export interface IProject {
 	_id: string;
 	title: string;
-	slug: string;
 	description: string;
 	statusHistory: IProjectStatusEntry[];
 	locations: ILocation[];

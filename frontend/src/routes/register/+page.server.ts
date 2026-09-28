@@ -1,11 +1,11 @@
-import { fail, redirect } from '@sveltejs/kit';
-import type { Actions, PageServerLoad } from './$types';
-import { getBackendUrl, SESSION_COOKIE_NAME, getSessionCookieOptions } from '$lib/server/api';
-import type { AuthSuccessResponse, AuthErrorResponse } from '$lib/types/auth';
+import { fail, redirect } from "@sveltejs/kit";
+import type { Actions, PageServerLoad } from "./$types";
+import { getBackendUrl, SESSION_COOKIE_NAME, getSessionCookieOptions } from "$lib/server/api";
+import type { AuthSuccessResponse, AuthErrorResponse } from "$lib/types/auth";
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.user) {
-		throw redirect(303, '/');
+		throw redirect(303, "/");
 	}
 	return {};
 };
@@ -13,17 +13,17 @@ export const load: PageServerLoad = async ({ locals }) => {
 export const actions: Actions = {
 	default: async ({ request, fetch, cookies }) => {
 		const formData = await request.formData();
-		const email = formData.get('email')?.toString() ?? '';
-		const username = formData.get('username')?.toString() ?? '';
-		const displayName = formData.get('displayName')?.toString() ?? '';
-		const password = formData.get('password')?.toString() ?? '';
+		const email = formData.get("email")?.toString() ?? "";
+		const username = formData.get("username")?.toString() ?? "";
+		const displayName = formData.get("displayName")?.toString() ?? "";
+		const password = formData.get("password")?.toString() ?? "";
 
-		if (!email || !email.includes('@')) {
+		if (!email || !email.includes("@")) {
 			return fail(400, {
 				email,
 				username,
 				displayName,
-				error: 'INVALID_EMAIL'
+				error: "INVALID_EMAIL"
 			});
 		}
 
@@ -38,7 +38,7 @@ export const actions: Actions = {
 				email,
 				username,
 				displayName,
-				error: 'INVALID_USERNAME'
+				error: "INVALID_USERNAME"
 			});
 		}
 
@@ -47,7 +47,7 @@ export const actions: Actions = {
 				email,
 				username,
 				displayName,
-				error: 'INVALID_DISPLAY_NAME'
+				error: "INVALID_DISPLAY_NAME"
 			});
 		}
 
@@ -56,15 +56,15 @@ export const actions: Actions = {
 				email,
 				username,
 				displayName,
-				error: 'INVALID_PASSWORD'
+				error: "INVALID_PASSWORD"
 			});
 		}
 
 		const backendUrl = getBackendUrl();
 		try {
 			const res = await fetch(`${backendUrl}/api/auth/register`, {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({
 					email: email.trim().toLowerCase(),
 					username: cleanUsername,
@@ -79,23 +79,23 @@ export const actions: Actions = {
 					email,
 					username,
 					displayName,
-					error: errorData.error || 'REGISTRATION_FAILED'
+					error: errorData.error || "REGISTRATION_FAILED"
 				});
 			}
 
 			const data = (await res.json()) as AuthSuccessResponse;
 			cookies.set(SESSION_COOKIE_NAME, data.token, getSessionCookieOptions());
 		} catch (err) {
-			const message = err instanceof Error ? err.message : 'Server unreachable';
+			const message = err instanceof Error ? err.message : "Server unreachable";
 			return fail(500, {
 				email,
 				username,
 				displayName,
-				error: 'NETWORK_ERROR',
+				error: "NETWORK_ERROR",
 				errorMessage: message
 			});
 		}
 
-		throw redirect(303, '/');
+		throw redirect(303, "/");
 	}
 };

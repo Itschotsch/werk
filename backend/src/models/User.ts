@@ -1,4 +1,4 @@
-import { Schema, model, type Document, type Types } from 'mongoose';
+import { Schema, model, type Document, type Types } from "mongoose";
 
 export interface IUserIdentity {
 	provider: string;
@@ -76,7 +76,7 @@ const userSchema = new Schema<IUser>(
 		},
 		biography: {
 			type: String,
-			default: '',
+			default: "",
 			trim: true,
 			maxlength: 5000
 		},
@@ -90,13 +90,13 @@ const userSchema = new Schema<IUser>(
 		},
 		website: {
 			type: String,
-			default: '',
+			default: "",
 			trim: true,
 			maxlength: 200
 		},
 		avatarUrl: {
 			type: String,
-			default: '',
+			default: "",
 			trim: true,
 			maxlength: 500
 		},
@@ -106,7 +106,7 @@ const userSchema = new Schema<IUser>(
 		},
 		authProviders: {
 			type: [String],
-			default: ['password']
+			default: ["password"]
 		},
 		identities: {
 			type: [userIdentitySchema],
@@ -118,4 +118,4 @@ const userSchema = new Schema<IUser>(
 	}
 );
 
-export const User = model<IUser>('User', userSchema);
+export const User = model<IUser>("User", userSchema);

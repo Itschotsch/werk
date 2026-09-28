@@ -1,11 +1,11 @@
-export const SUPPORTED_LOCALES = ['de', 'fr', 'it', 'en'] as const;
+export const SUPPORTED_LOCALES = ["de", "fr", "it", "en"] as const;
 
 export type Locale = (typeof SUPPORTED_LOCALES)[number];
 
-export const DEFAULT_LOCALE: Locale = 'de';
+export const DEFAULT_LOCALE: Locale = "de";
 
 export function isSupportedLocale(value: unknown): value is Locale {
-	return typeof value === 'string' && SUPPORTED_LOCALES.includes(value as Locale);
+	return typeof value === "string" && SUPPORTED_LOCALES.includes(value as Locale);
 }
 
 export interface HeaderMessages {
@@ -91,6 +91,8 @@ export interface ProfileMessages {
 	noLocations: string;
 	rolesTitle: string;
 	noRoles: string;
+	projectsTitle: string;
+	noProjects: string;
 	websiteTitle: string;
 	editProfile: string;
 	closeEdit: string;
@@ -162,6 +164,67 @@ export interface PagesMessages {
 	};
 }
 
+export interface ProjectStatusMessages {
+	draft: string;
+	planning: string;
+	in_production: string;
+	completed: string;
+	archived: string;
+	pending: string;
+}
+
+export interface ProjectsMessages {
+	createNew: string;
+	createTitle: string;
+	searchPlaceholder: string;
+	searchButton: string;
+	tagsLabel: string;
+	tagsLabelComma: string;
+	tagsPlaceholder: string;
+	leadershipLabel: string;
+	noProjectsFound: string;
+	backToOverview: string;
+	createError: string;
+	titleLabel: string;
+	titlePlaceholder: string;
+	descriptionLabel: string;
+	descriptionPlaceholder: string;
+	isPublicLabel: string;
+	submitting: string;
+	submitCreate: string;
+	allProjects: string;
+	statusLabel: string;
+	actionFailed: string;
+	description: string;
+	noDescription: string;
+	tags: string;
+	leadership: string;
+	participantsAndCredits: string;
+	unknown: string;
+	pendingTag: string;
+	noParticipants: string;
+	addParticipant: string;
+	userLabel: string;
+	userPlaceholder: string;
+	freeTextNameLabel: string;
+	freeTextNamePlaceholder: string;
+	roleLabel: string;
+	rolePlaceholder: string;
+	logbookTitle: string;
+	locationLabel: string;
+	authoredBy: string;
+	noLogEntries: string;
+	writeLogEntry: string;
+	logTitleLabel: string;
+	logTitlePlaceholder: string;
+	logLocationLabel: string;
+	logLocationPlaceholder: string;
+	logDatetimeLabel: string;
+	logTextLabel: string;
+	logTextPlaceholder: string;
+	publishLogEntry: string;
+}
+
 export interface Messages {
 	header: HeaderMessages;
 	footer: FooterMessages;
@@ -169,4 +232,6 @@ export interface Messages {
 	auth: AuthMessages;
 	profile: ProfileMessages;
 	pages: PagesMessages;
+	projectStatus: ProjectStatusMessages;
+	projects: ProjectsMessages;
 }

@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { ActionData } from './$types';
-	import { useI18n } from '$lib/i18n';
+	import type { ActionData } from "./$types";
+	import { useI18n } from "$lib/i18n";
 
 	interface Props {
 		form: ActionData;
@@ -13,13 +13,13 @@
 	function getErrorMessage(errorCode?: string): string | null {
 		if (!errorCode) return null;
 		switch (errorCode) {
-			case 'EMAIL_IN_USE':
+			case "EMAIL_IN_USE":
 				return i18n.t.auth.register.emailInUse;
-			case 'USERNAME_IN_USE':
+			case "USERNAME_IN_USE":
 				return i18n.t.auth.register.usernameInUse;
-			case 'INVALID_USERNAME':
+			case "INVALID_USERNAME":
 				return i18n.t.auth.register.invalidUsername;
-			case 'INVALID_PASSWORD':
+			case "INVALID_PASSWORD":
 				return i18n.t.auth.register.invalidPassword;
 			default:
 				return i18n.t.auth.login.invalidCredentials;
@@ -45,7 +45,7 @@
 				name="email"
 				required
 				autocomplete="email"
-				value={form?.email ?? ''}
+				value={form?.email ?? ""}
 			/>
 		</div>
 
@@ -58,7 +58,7 @@
 				required
 				autocomplete="username"
 				pattern="[a-zA-Z0-9_-]{'{3,30}'}"
-				value={form?.username ?? ''}
+				value={form?.username ?? ""}
 			/>
 		</div>
 
@@ -70,7 +70,7 @@
 				name="displayName"
 				required
 				autocomplete="name"
-				value={form?.displayName ?? ''}
+				value={form?.displayName ?? ""}
 			/>
 		</div>
 

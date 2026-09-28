@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { PageData, ActionData } from './$types';
-	import type { UserLocation } from '$lib/types/profile';
-	import { useI18n } from '$lib/i18n';
-	import { enhance } from '$app/forms';
+	import type { PageData, ActionData } from "./$types";
+	import type { UserLocation } from "$lib/types/profile";
+	import { useI18n } from "$lib/i18n";
+	import { enhance } from "$app/forms";
 
 	interface Props {
 		data: PageData;
@@ -24,17 +24,17 @@
 	let isEditing = $state(false);
 	let isSubmitting = $state(false);
 
-	const formFields = $derived(form && 'fields' in form ? (form.fields as FormFields) : undefined);
+	const formFields = $derived(form && "fields" in form ? (form.fields as FormFields) : undefined);
 
-	const profile = $derived(form && 'user' in form && form.user ? form.user : data.profile);
+	const profile = $derived(form && "user" in form && form.user ? form.user : data.profile);
 
 	const formattedDate = $derived.by(() => {
-		if (!profile.createdAt) return '';
+		if (!profile.createdAt) return "";
 		try {
 			const date = new Date(profile.createdAt);
 			return new Intl.DateTimeFormat(i18n.locale, {
-				year: 'numeric',
-				month: 'long'
+				year: "numeric",
+				month: "long"
 			}).format(date);
 		} catch {
 			return profile.createdAt;
@@ -42,10 +42,10 @@
 	});
 
 	const locationsInput = $derived(
-		profile.locations ? profile.locations.map((l: UserLocation) => l.name).join('\n') : ''
+		profile.locations ? profile.locations.map((l: UserLocation) => l.name).join("\n") : ""
 	);
 
-	const rolesInput = $derived(profile.roles ? profile.roles.join(', ') : '');
+	const rolesInput = $derived(profile.roles ? profile.roles.join(", ") : "");
 
 	function toggleEdit() {
 		isEditing = !isEditing;
@@ -79,11 +79,11 @@
 		{/if}
 	</header>
 
-	{#if form && 'success' in form && form.success}
+	{#if form && "success" in form && form.success}
 		<div role="status">
 			<p>{i18n.t.profile.successMessage}</p>
 		</div>
-	{:else if form && 'error' in form && form.error}
+	{:else if form && "error" in form && form.error}
 		<div role="alert">
 			<p>{i18n.t.profile.errorMessage}</p>
 		</div>
@@ -100,7 +100,7 @@
 					return async ({ update, result }) => {
 						await update();
 						isSubmitting = false;
-						if (result.type === 'success') {
+						if (result.type === "success") {
 							isEditing = false;
 						}
 					};
@@ -211,6 +211,32 @@
 				</ul>
 			{:else}
 				<p>{i18n.t.profile.noRoles}</p>
+			{/if}
+		</section>
+
+		<section>
+			<h2>{i18n.t.profile.projectsTitle} ({data.projects ? data.projects.length : 0})</h2>
+			{#if data.projects && data.projects.length > 0}
+				<ul>
+					{#each data.projects as project (project.id)}
+						<li>
+							<a href="/projects/{project.id}">{project.title}</a>
+							<span>({project.role})</span>
+							{#if project.status === "pending"}
+								<small>– ({i18n.t.projectStatus.pending})</small>
+							{/if}
+							{#if project.latestStatus}
+								{@const lStatus = project.latestStatus.status}
+								<small>– {i18n.t.projectStatus[lStatus] || lStatus}</small>
+							{/if}
+							{#if project.contributionNote}
+								<p><small>{project.contributionNote}</small></p>
+							{/if}
+						</li>
+					{/each}
+				</ul>
+			{:else}
+				<p>{i18n.t.profile.noProjects}</p>
 			{/if}
 		</section>
 

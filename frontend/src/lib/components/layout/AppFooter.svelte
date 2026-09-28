@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Snippet } from 'svelte';
-	import type { NavItem } from '$lib/types/navigation';
-	import { useI18n } from '$lib/i18n';
+	import type { Snippet } from "svelte";
+	import type { NavItem } from "$lib/types/navigation";
+	import { useI18n } from "$lib/i18n";
 
 	interface Props {
 		tagline?: string;
@@ -17,10 +17,10 @@
 
 	const resolvedNavItems = $derived(
 		navItems ?? [
-			{ label: i18n.t.footer.nav.about, href: '/about' },
-			{ label: i18n.t.footer.nav.guidelines, href: '/guidelines' },
-			{ label: i18n.t.footer.nav.explore, href: '/explore' },
-			{ label: i18n.t.footer.nav.imprint, href: '/imprint' }
+			{ label: i18n.t.footer.nav.about, href: "/about" },
+			{ label: i18n.t.footer.nav.guidelines, href: "/guidelines" },
+			{ label: i18n.t.footer.nav.explore, href: "/explore" },
+			{ label: i18n.t.footer.nav.imprint, href: "/imprint" }
 		]
 	);
 
